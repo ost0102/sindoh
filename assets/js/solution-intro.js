@@ -71,10 +71,10 @@ ScrollTrigger.create({
     }
 });
 
-// section6
-const slideTl = gsap.to(".s6-list", {
-	x: "-30%",
-	duration: 10,
+// section7
+const slideTl = gsap.to(".s7-list", {
+	x: "-20%",
+	duration: 5,
 	ease: "none",
 	repeat: -1,
 });
