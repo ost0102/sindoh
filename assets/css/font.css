@@ -1,0 +1,26 @@
+@font-face {
+    font-family: '8Extra';
+    src: url('../fonts/Freesentation-8ExtraBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: '7bold';
+    src: url('../fonts/Freesentation-7Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: '6semi';
+    src: url('../fonts/Freesentation-6SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: '5medium';
+    src: url('../fonts/Freesentation-5Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: '4Regular';
+    src: url('../fonts/Freesentation-4Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: '3Light';
+    src: url('../fonts/Freesentation-3Light.ttf') format('truetype');
+}

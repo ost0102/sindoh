@@ -1,0 +1,51 @@
+/* 공통 너비 */
+.c-wrap{
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sticky{
+    position: sticky;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+}
+
+/* 버튼 hover 효과 */
+.link-fill{
+    position: relative;
+    transition: color 0.5s ease;
+    z-index: 0;
+}
+.link-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    z-index: -1;
+    transition: width 0.5s ease;
+}
+.link-fill.black::before {
+    background: #fff;
+}
+.link-fill.white::before {
+    background: #000;
+}
+.link-fill:hover::before {
+    width: 100%;
+}
+.link-fill.black:hover{
+    color: #000 !important;
+}
+.link-fill.white:hover{
+    color: #fff;
+}
+.link-fill.white:hover svg *{
+    fill: #fff;
+}
+.link-fill.black:hover svg *{
+    fill: #000;
+}
