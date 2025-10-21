@@ -9,7 +9,7 @@
     left: 0;          
     width: 100%;
     height: 100%;
-    background-image: url('../images/doing/doing_img01.png');
+    background-image: url('../images/doing/s1_img1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -187,57 +187,14 @@
 .s4{
     position: relative;
     background: #000;
-    height: 120vh;
+    height: 800vh;
 }
 .s4 .s4-inner{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+
 }
 .s4 .s4-inner .s4-cont{
-    display: flex;
-    flex-direction: column;
-    gap: 150px;
-    align-items: center;
-    overflow: hidden;
 }
-.s4 .s4-inner .s4-cont .s4-title{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
-}
-.s4 .s4-inner .s4-cont .s4-title h2{
-    font-family: '6semi';
-    font-size: 6rem;
-    color: #fff;
-}
-.s4 .s4-inner .s4-cont .s4-title p{
-    font-family: '4Regular';
-    font-size: 3rem;
-    color: #e0e0e0;
-}
-.s4 .s4-inner .s4-cont .s4-list{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 180px;
-    margin: auto;
-}
-.s4 .s4-inner .s4-cont .s4-list li{
-    
-}
-.s4 .s4-inner .s4-cont .s4-list li .list-cont{
-    
-}
-.s4 .s4-inner .s4-cont .s4-list li .list-cont .list-img img{
-    max-width: unset;
-}
-.s4 .s4-inner .s4-cont .s4-list li .list-cont .list-txt p{
-    
-}
+
 
 /* s5(다섯번째 섹션) */
 .s5{
