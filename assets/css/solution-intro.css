@@ -545,7 +545,7 @@
     }
 
     .s5{
-        height: 180vh;  
+        height: 220vh;  
     }
     .s5 .s5-inner .s5-cont .s5-title h2{
         font-size: 3rem;
@@ -573,6 +573,12 @@
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt,
     .s5 .s5-inner .s5-cont .s5-list{
         gap: 10px;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt p:nth-child(1){
+        font-size: 1.6rem;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt p:nth-child(2){
+        font-size: 2rem;
     }
 
     .s6 .s6-inner .s6-cont{
