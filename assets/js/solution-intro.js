@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin);
 // section2
 const offset = window.innerHeight * 0.7; // .s1의 높이(70vh) → px로 변환
 
-gsap.fromTo(".s2-bg",
+gsap.fromTo(".s2-bg img",
     { y: 0 },
     {
         y: -150,

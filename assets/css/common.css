@@ -3,6 +3,7 @@
     max-width: 1560px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
 }
 
 .sticky{
@@ -48,4 +49,19 @@
 }
 .link-fill.black:hover svg *{
     fill: #000;
+}
+
+.br-mo{
+    display: none;
+}
+.br-pc{
+    display: block;
+}
+@media (max-width:768px){
+    .br-mo{
+        display: block;
+    }
+    .br-pc{
+        display: none;
+    }
 }
