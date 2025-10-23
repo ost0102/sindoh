@@ -1,4 +1,8 @@
 @font-face {
+    font-family: '9Black';
+    src: url('../fonts/Freesentation-9Black.ttf') format('truetype');
+}
+@font-face {
     font-family: '8Extra';
     src: url('../fonts/Freesentation-8ExtraBold.ttf') format('truetype');
 }

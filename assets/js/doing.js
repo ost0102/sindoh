@@ -62,3 +62,189 @@ s3Tl
 
 
 // section4
+gsap.fromTo(
+    ".mobile-img",
+    {left:"-50%"},
+    {
+        left:"18%",
+        duration: 1,
+        scrollTrigger: { 
+            trigger: ".s4", 
+            start: "top top", 
+            end: "20% bottom", 
+            scrub: true,
+        } 
+    }
+)
+
+let numod = new Odometer({
+	el: document.querySelector('.s4 .num p'),
+});
+
+let s4Tl = gsap.timeline({ 
+    scrollTrigger: { 
+        trigger: ".s4", 
+        start: "21% top", 
+        end: "90% bottom", 
+        scrub: true,
+    } 
+}); 
+s4Tl
+    .to(".mobile-img", { left: "50%", duration: 1 }) 
+    .to(".intro", { opacity: 0}) 
+    .to(".mobile-img", { rotate: -90, scale: 1, duration: 1 })
+    .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 })
+    .to(".mobile-txt", { opacity: 1, duration: .3 })
+    .to(".pop-inner", {width:"100%", height:"100%", duration:1})
+    .to(".mobile-img", { top: "11%", duration: 1 })
+    .to(".pop-inner", { top: "-100%", duration: 1 },'<')
+    .to(".mobile-txt", { opacity: 0, duration: 1 },'<')
+    .to(".mobile4 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+    .to(".mobile_behind", {opacity:1, top:"75%" , duration: 1})
+    .to(".num", { opacity:1, ease:"none" })
+    .to(".recipt-txt", { opacity:1, ease:"none" },'<')
+    .to({}, { 
+        duration: 1, 
+        ease: "none",
+        onUpdate: function() {
+            let progress = this.progress(); 
+            let value = Math.round(progress * 119000); 
+            numod.update(value)
+        }
+    },'<')
+
+
+
+// section5 - s5-list 자동 슬라이드 + 드래그 연동 (px 단위로 일원화)
+const list = document.querySelector(".s5-list");
+const listContainer = document.querySelector(".s5-cont");
+
+function getS5Bounds() {
+	if (!list || !listContainer) {
+		return { minX: 0, maxX: 0 };
+	}
+	const containerWidth = listContainer.clientWidth;
+	const contentWidth = list.scrollWidth;
+	const minX = Math.min(containerWidth - contentWidth, 0);
+	
+	// 슬라이드가 필요한지 확인 (내용물이 컨테이너보다 클 때만)
+	const needsSlide = contentWidth > containerWidth;
+	
+	return { minX, maxX: 0, needsSlide };
+}
+
+let s5Bounds = getS5Bounds();
+let autoSlideTween = null;
+const autoSpeedPxPerSec = 80; // 자동 슬라이드 속도(px/s)
+
+function restartAutoSlide() {
+	if (!list) {
+		return;
+	}
+	
+	// 경계값 재계산
+	s5Bounds = getS5Bounds();
+	
+	// 슬라이드가 필요한지 확인
+	if (!s5Bounds.needsSlide) {
+		return;
+	}
+	
+	if (autoSlideTween) autoSlideTween.kill();
+	
+	// 현재 위치에서 왼쪽 끝(minX)까지 이동한 뒤 멈춤
+	const currentX = gsap.getProperty(list, "x");
+	const distance = Math.max(0.01, (currentX - s5Bounds.minX));
+	const duration = distance / autoSpeedPxPerSec;
+	
+	// 슬라이드할 내용이 있는지 확인
+	if (distance <= 0.01) {
+		return;
+	}
+	
+	autoSlideTween = gsap.to(list, {
+		x: s5Bounds.minX,
+		duration: duration,
+		ease: "none",
+		onComplete: function() {
+			// 끝에 도달하면 자동 슬라이드를 중지
+			autoSlideTween = null;
+		}
+	});
+}
+
+// Draggable 생성
+let s5Drag = Draggable.create(list, {
+	type: "x",
+	inertia: true,
+	bounds: s5Bounds,
+	edgeResistance: 0.8,
+	dragResistance: 0.8,
+	cursor: "grab",
+	activeCursor: "grabbing",
+
+	onDragStart: function() {
+		if (autoSlideTween) autoSlideTween.kill();
+	},
+	onDragEnd: function() {
+		s5Bounds = getS5Bounds();
+		this.applyBounds(s5Bounds);
+		// 드래그 종료 후, 끝에 도달했는지 확인하고 필요 시에만 자동 슬라이드 재시작
+		const currentX = gsap.getProperty(list, "x");
+		if (currentX > s5Bounds.minX) {
+			restartAutoSlide();
+		}
+	},
+	onThrowUpdate: function() {
+		if (autoSlideTween) autoSlideTween.kill();
+	},
+	onThrowComplete: function() {
+		s5Bounds = getS5Bounds();
+		this.applyBounds(s5Bounds);
+		// 관성 스크롤 종료 후, 끝에 도달했는지 확인하고 필요 시에만 자동 슬라이드 재시작
+		const currentX = gsap.getProperty(list, "x");
+		if (currentX > s5Bounds.minX) {
+			restartAutoSlide();
+		}
+	}
+})[0];
+
+// 리사이즈 시 경계 재설정 및 자동 슬라이드 보정
+window.addEventListener('resize', function() {
+	s5Bounds = getS5Bounds();
+	if (s5Drag) s5Drag.applyBounds(s5Bounds);
+	restartAutoSlide();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+	s5Bounds = getS5Bounds();
+	if (s5Drag) s5Drag.applyBounds(s5Bounds);
+	
+	const s5Element = document.querySelector('.s5');
+	if (s5Element) {
+		const rect = s5Element.getBoundingClientRect();
+		if (rect.top < window.innerHeight * 0.8) {
+			restartAutoSlide();
+		}
+	}
+});
+
+// s5 섹션에 진입할 때 자동 슬라이드 시작
+ScrollTrigger.create({
+	trigger: ".s5",
+	start: "top 80%",
+	onEnter: function() {
+		restartAutoSlide();
+	},
+	onLeave: function() {
+		// s5 섹션을 벗어나면 자동 슬라이드 중지
+		if (autoSlideTween) {
+			autoSlideTween.kill();
+			autoSlideTween = null;
+		}
+	},
+	onEnterBack: function() {
+		// 다시 s5 섹션에 진입하면 자동 슬라이드 재시작
+		restartAutoSlide();
+	}
+});
