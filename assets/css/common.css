@@ -51,11 +51,22 @@
     fill: #000;
 }
 
+.mo{
+    display: none;
+}
 .br-mo{
     display: none;
 }
 .br-pc{
     display: block;
+}
+@media (max-width:1080px){
+    .pc{
+        display: none;
+    }
+    .mo{
+        display: block;
+    }
 }
 @media (max-width:768px){
     .br-mo{

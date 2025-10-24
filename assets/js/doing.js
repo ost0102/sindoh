@@ -62,56 +62,170 @@ s3Tl
 
 
 // section4
-gsap.fromTo(
-    ".mobile-img",
-    {left:"-50%"},
-    {
-        left:"18%",
-        duration: 1,
-        scrollTrigger: { 
-            trigger: ".s4", 
-            start: "top top", 
-            end: "20% bottom", 
-            scrub: true,
-        } 
+let numod;
+ScrollTrigger.matchMedia({
+    "(min-width: 1081px)": function() {
+
+        gsap.fromTo(
+            ".mobile-img",
+            { left: "-50%" },
+            {
+                left: "18vw",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".s4",
+                    start: "top top",
+                    end: "20% bottom",
+                    scrub: true,
+                }
+            }
+        );
+
+        let numod = new Odometer({
+            el: document.querySelector('.s4 .num p'),
+        });
+
+        let s4Tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".s4",
+                start: "21% top",
+                end: "90% bottom",
+                scrub: true,
+            }
+        });
+
+        s4Tl
+            .to(".mobile-img", { left: "50%", duration: 1 }) 
+            .to(".intro", { opacity: 0})
+            .to(".mobile-img", { rotate: -90, scale: 1, duration: 1 })
+            .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 })
+            .to(".mobile-txt", { opacity: 1, duration: .3 })
+            .to(".pop-inner", {width:"100%", height:"100%", duration:1})
+            .to(".mobile-img", { top: "4.4vw", duration: 1 })
+            .to(".pop-inner", { top: "-100%", duration: 1 },'<')
+            .to(".mobile-txt", { opacity: 0, duration: 1 },'<')
+            .to(".mobile4 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+            .to(".mobile_behind", { opacity:1, top:"35vw" , duration: 1 })
+            .to(".num", { opacity:1, ease:"none" })
+            .to(".recipt-txt", { opacity:1, ease:"none" },'<')
+            .to({}, { 
+                duration: 1,
+                ease: "none",
+                onUpdate: function() {
+                    let progress = this.progress();
+                    let value = Math.round(progress * 119000);
+                    numod.update(value);
+                }
+            },'<');
+    },
+    "(min-width:769px) and (max-width: 1080px)": function(){
+        gsap.fromTo(
+            ".mobile-img",
+            { top: "150%" },
+            {
+                top: "50vw",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".s4",
+                    start: "top top",
+                    end: "20% bottom",
+                    scrub: true,
+                }
+            }
+        )
+
+        let numod = new Odometer({
+            el: document.querySelector('.s4 .num p'),
+        });
+
+        gsap.set(".mobile-txt",{top:"250px"})
+        gsap.set(".mobile_behind",{top:"240px"})
+        let s4Tl2 = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".s4",
+                start: "21% top",
+                end: "90% bottom",
+                scrub: true,
+            }
+        })
+
+        s4Tl2
+            .to(".intro", { opacity: 0, duration:1})
+            .to(".intro-txt", {top: "-100px", opacity:0, duration:1},'<')
+            .to(".mobile-txt", {opacity:1, top: "140px", duration:1},'<')
+            .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 },'<')
+            .to(".pop-area_mo .pop-inner", {top:"70%", duration:1}) 
+            .to(".pop-area_mo .pop-inner", {top:"-30%", opacity:0, duration:1}) 
+            .to(".mobile5 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+            .to(".mobile-txt", {opacity:0, top: "70px", duration:1},'<')
+            .to(".mobile_behind", {opacity:1, top:"130px", duration: 1},'<')
+            .to(".num", { opacity:1, ease:"none" })
+            .to(".recipt-txt", { opacity:1, ease:"none" },'<')
+            .to({}, { 
+                duration: 1,
+                ease: "none",
+                onUpdate: function() {
+                    let progress = this.progress();
+                    let value = Math.round(progress * 119000);
+                    numod.update(value);
+                }
+            });
+    },
+
+    "(max-width: 768px)": function(){
+        gsap.fromTo(
+            ".mobile-img",
+            { top: "150%" },
+            {
+                top: "50%",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".s4",
+                    start: "top top",
+                    end: "20% bottom",
+                    scrub: true,
+                }
+            }
+        )
+
+        let numod = new Odometer({
+            el: document.querySelector('.s4 .num p'),
+        });
+
+        gsap.set(".mobile-txt",{top:"250px"})
+        gsap.set(".mobile_behind",{top:"240px"})
+        let s4Tl2 = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".s4",
+                start: "21% top",
+                end: "90% bottom",
+                scrub: true,
+            }
+        })
+
+        s4Tl2
+            .to(".intro", { opacity: 0, duration:1})
+            .to(".intro-txt", {top: "-100px", opacity:0, duration:1},'<')
+            .to(".mobile-txt", {opacity:1, top: "140px", duration:1},'<')
+            .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 },'<')
+            .to(".pop-area_mo .pop-inner", {top:"50%", duration:1}) 
+            .to(".pop-area_mo .pop-inner", {top:"-30%", opacity:0, duration:1}) 
+            .to(".mobile5 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+            .to(".mobile-txt", {opacity:0, top: "70px", duration:1},'<')
+            .to(".mobile_behind", {opacity:1, top:"130px", duration: 1},'<')
+            .to(".num", { opacity:1, ease:"none" })
+            .to(".recipt-txt", { opacity:1, ease:"none" },'<')
+            .to({}, { 
+                duration: 1,
+                ease: "none",
+                onUpdate: function() {
+                    let progress = this.progress();
+                    let value = Math.round(progress * 119000);
+                    numod.update(value);
+                }
+            });
     }
-)
-
-let numod = new Odometer({
-	el: document.querySelector('.s4 .num p'),
 });
-
-let s4Tl = gsap.timeline({ 
-    scrollTrigger: { 
-        trigger: ".s4", 
-        start: "21% top", 
-        end: "90% bottom", 
-        scrub: true,
-    } 
-}); 
-s4Tl
-    .to(".mobile-img", { left: "50%", duration: 1 }) 
-    .to(".intro", { opacity: 0}) 
-    .to(".mobile-img", { rotate: -90, scale: 1, duration: 1 })
-    .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 })
-    .to(".mobile-txt", { opacity: 1, duration: .3 })
-    .to(".pop-inner", {width:"100%", height:"100%", duration:1})
-    .to(".mobile-img", { top: "11%", duration: 1 })
-    .to(".pop-inner", { top: "-100%", duration: 1 },'<')
-    .to(".mobile-txt", { opacity: 0, duration: 1 },'<')
-    .to(".mobile4 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
-    .to(".mobile_behind", {opacity:1, top:"75%" , duration: 1})
-    .to(".num", { opacity:1, ease:"none" })
-    .to(".recipt-txt", { opacity:1, ease:"none" },'<')
-    .to({}, { 
-        duration: 1, 
-        ease: "none",
-        onUpdate: function() {
-            let progress = this.progress(); 
-            let value = Math.round(progress * 119000); 
-            numod.update(value)
-        }
-    },'<')
 
 
 
