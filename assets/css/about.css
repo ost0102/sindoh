@@ -147,7 +147,7 @@
     position: relative;
     margin-top: -300vh;
     z-index: 2;
-    height: 400vh;
+    height: 700vh;
     background: #000;
     clip-path: inset(100% 0% 0% 0%);
 }
@@ -188,6 +188,9 @@
 }
 .s3 .s3-inner .inner-txt h2 .rolling-txt.step05{
     transform: translateY(-40%);
+}
+.s3 .s3-inner .inner-txt h2 .rolling-txt p{
+    text-align: center;
 }
 .s3 .s3-inner .inner-txt h2 .rolling-txt p:nth-child(1){
     color: #fff;
@@ -362,7 +365,7 @@
 /* s6(여섯번째 섹션) */
 .s6{
     position: relative;
-    height: 100vh;
+    height: 57vh;
 }
 .s6 .s6-inner{
     width: 100%;

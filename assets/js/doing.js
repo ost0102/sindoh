@@ -58,7 +58,7 @@ let s3Tl = gsap.timeline({
 })
 s3Tl
 	.to(s3Chars1,{color:"#fff", stagger:1})
-	.to(s3Chars2,{background:"linear-gradient(90deg, #6F36FF, #B89CFE)", stagger:1})
+	.to(s3Chars2,{color:"#7038FF", stagger:1})
 
 
 // section4

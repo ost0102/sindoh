@@ -64,9 +64,10 @@ setTimeout(() => {
         color: "#fff",
         ease: "none",
         stagger: 1,
+        duration: 2,
         scrollTrigger: {
             trigger: ".s1",
-            start: "50% bottom",
+            start: "30% bottom",
             end: "bottom bottom",
             scrub: true,
         }

@@ -180,7 +180,6 @@
 }
 .s3 .s3-inner .inner-txt h2 > p:nth-child(2) .char{
     -webkit-background-clip: text !important;
-    /* color: transparent; */
 }
 
 /* s4(네 번째 섹션) */

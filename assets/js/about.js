@@ -19,6 +19,7 @@ let s2Tl = gsap.timeline({
         trigger: ".s2",
         start: "top top",
         end: "30% 10%",
+		duration: 5,
         scrub: true,
     },
 });
@@ -37,7 +38,7 @@ gsap.fromTo(
         scrollTrigger: {
             trigger: ".s2",
             start: "30% bottom",   
-            end: "bottom top",       
+            end: "bottom 40%",     
             scrub: true,
         }
     }
@@ -47,13 +48,14 @@ gsap.fromTo(
 // section3
 ScrollTrigger.create({
     trigger: ".s3",
-    start: "700vh 0%",
+    start: "700vh 20%",
     end: "100% 80%",
     scrub: true,
     onUpdate: function(self){
         var $el = $('.rolling-txt');
         if (!$el.length) return;
         var p = self.progress;
+		console.log(p);
         var stepIndex = (p >= 0.8) ? 5 : (p >= 0.6) ? 4 : (p >= 0.4) ? 3 : (p >= 0.2) ? 2 : 1;
         for (var i = 1; i <= 5; i++) {
             $el.removeClass('step0' + i);
