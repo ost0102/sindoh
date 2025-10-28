@@ -91,3 +91,83 @@
 .wrap5{
     z-index: 1;
 }
+
+.s5{
+    position: relative;
+    height: 500vh;
+}
+.s5 .s5-inner{
+}
+.s5 .s5-inner .s5-cont{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.s5 .s5-inner .s5-cont .s5-cont--wrap{
+    display: flex;
+    align-items: center;
+    display: flex;
+}
+.s5 .s5-inner .s5-cont .main_slide:nth-child(1){
+    margin-left: 200px;
+}
+.s5 .s5-inner .s5-cont .main_slide{
+    margin-right: 200px;
+}
+.s5 .s5-inner .s5-cont .main_slide:nth-child(3){
+}
+.s5 .s5-inner .s5-cont .main_slide .slide_title{
+    
+}
+.s5 .s5-inner .s5-cont .main_slide .slide_title .title-inner{
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+.s5 .s5-inner .s5-cont .main_slide .slide_title p:nth-child(1){
+    font-family: '6semi';
+    font-size: 6rem;
+}
+.s5 .s5-inner .s5-cont .main_slide .slide_title p:nth-child(2){
+    font-family: '5medium';
+    color: #212121;
+}
+.s5 .s5-inner .s5-cont .main_slide .slide_title span{
+    font-family: '6semi';
+    font-size: 1.6rem;
+    text-decoration: underline;
+    text-underline-position: under;
+    color: #323232;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li{}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont{
+    width: 730px;
+    height: 450px;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont a{
+    overflow: hidden;
+    height: 100%;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont a .img-wrap{}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont a .img-wrap img{
+    width: 100%;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont .list-txt{
+    margin-top: 24px;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont .list-txt p:nth-child(1){
+    font-family: '5medium';
+    font-size: 2rem;
+    color: #616161;
+    margin-bottom: 13px;
+}
+.s5 .s5-inner .s5-cont .main_slide .main-list li .main-list--cont .list-txt p:nth-child(2){
+    font-family: '6semi';
+    font-size: 2.6rem;
+}
