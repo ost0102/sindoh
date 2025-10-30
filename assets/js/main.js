@@ -22,7 +22,6 @@ const slideWrap = document.querySelector('.s5-cont--wrap');
 const slides = slideWrap.querySelectorAll('.main_slide');
 const extraGap = 200; // 마지막 오른쪽 여백 px
 
-// 1️⃣ 전체 슬라이드 수평 스크롤
 gsap.to(slideWrap, {
     x: -(slideWrap.scrollWidth - window.innerWidth + extraGap),
     ease: "none",
