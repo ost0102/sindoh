@@ -1,0 +1,115 @@
+.s1{
+    position: relative;
+}
+.s1 .s1-inner{
+    height: 1200vh;
+}
+.s1 .s1-inner .video-wrap{
+    width: 100%;
+    height: 100%;
+}
+.s1 .s1-inner video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.s2{
+    height: 100vh;
+    background: #6f36ff;
+}
+.s2 .c-wrap{
+    position: relative;
+    height: 100%;
+}
+.s2 .c-wrap .s2-inner{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+.s2 .c-wrap .s2-inner .txt-wrap{
+    color: #fff;
+}
+.s2 .c-wrap .s2-inner .txt-wrap p{
+    font-family: '4Regular';
+    font-size: 2.4rem;
+}
+.s2 .c-wrap .s2-inner .txt-wrap p:nth-child(1){
+    opacity: 0.8;
+}
+.s2 .c-wrap .s2-inner .txt-wrap h2{
+    font-family: '7bold';
+    font-size: 10rem;
+    margin: 21px 0 54px 0;
+}
+
+.s3{
+    background: #6f36ff;
+}
+.s3 .s3-wrap{}
+.s3 .s3-wrap .s3-inner{
+    height: 800vh;
+}
+.s3 .s3-wrap .s3-inner .point-wrap{
+    position: relative;
+    height: 100%;
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner{
+    display: flex;
+    align-items: center;
+    gap: 140px;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .img-wrap{}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .img-wrap img{
+    opacity: 0;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: #fff;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt1{
+    height: 66px;
+    overflow: hidden;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt2{
+    height: 58px;
+    overflow: hidden;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap p{
+    opacity: 0;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt1 p{
+    font-family: '7bold';
+    font-size: 5.5rem;
+}
+.s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt2 p{
+    font-family: '4Regular';
+    font-size: 2.4rem;
+}
+.s3 .s3-wrap .s3-inner .video-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.s3 .s3-wrap .s3-inner .video-wrap video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
