@@ -1,37 +1,37 @@
 // GSAP 플러그인 로드
 gsap.registerPlugin(ScrollTrigger);
 
-const imgHalf = 270; // 이미지 높이 절반 (540 / 2)
-const imgTop = window.innerHeight / 2 - imgHalf;
-const imgBottom = window.innerHeight / 2 + imgHalf;
-const imgBottom2 = window.innerHeight / 2 + 270; // 50vh + 270px
+// const imgHalf = 270; // 이미지 높이 절반 (540 / 2)
+// const imgTop = window.innerHeight / 2 - imgHalf;
+// const imgBottom = window.innerHeight / 2 + imgHalf;
+// const imgBottom2 = window.innerHeight / 2 + 270; // 50vh + 270px
 
-gsap.to(".img-wrap.wrap1",{
-    clipPath:"inset(0% 0% 100% 0%)",
-    scrollTrigger:{
-        trigger:".s3-box2",
-        start: `top ${imgBottom}`,
-        end:`top top`,
-        scrub:true,
-        ease:"none",
-    }
-})
+// gsap.to(".img-wrap.wrap1",{
+//     clipPath:"inset(0% 0% 100% 0%)",
+//     scrollTrigger:{
+//         trigger:".s3-box2",
+//         start: `top ${imgBottom}`,
+//         end:`top top`,
+//         scrub:true,
+//         ease:"none",
+//     }
+// })
 
 
-const slideWrap = document.querySelector('.s5-cont--wrap');
-const slides = slideWrap.querySelectorAll('.main_slide');
-const extraGap = 200; // 마지막 오른쪽 여백 px
+// const slideWrap = document.querySelector('.s5-cont--wrap');
+// const slides = slideWrap.querySelectorAll('.main_slide');
+// const extraGap = 200; // 마지막 오른쪽 여백 px
 
-gsap.to(slideWrap, {
-    x: -(slideWrap.scrollWidth - window.innerWidth + extraGap),
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".s5",
-        start: "top top",
-        end: () => "+=" + (slideWrap.scrollWidth - window.innerWidth + extraGap),
-        scrub: true,
-    }
-});
+// gsap.to(slideWrap, {
+//     x: -(slideWrap.scrollWidth - window.innerWidth + extraGap),
+//     ease: "none",
+//     scrollTrigger: {
+//         trigger: ".s5",
+//         start: "top top",
+//         end: () => "+=" + (slideWrap.scrollWidth - window.innerWidth + extraGap),
+//         scrub: true,
+//     }
+// });
 
 // gsap.to(".title-inner.title1", {
 //     x: 2500,
@@ -64,3 +64,32 @@ gsap.to(slideWrap, {
 //     console.log("두 번째 main_slide width:", secontSlide.offsetWidth);
 //     console.log("세 번째 main_slide width:", thirdSlide.offsetWidth);
 // });
+
+const imgHalf = 270; // 이미지 높이 절반 (540 / 2)
+const imgTop = window.innerHeight / 2 - imgHalf;
+const imgBottom = window.innerHeight / 2 + imgHalf;
+
+ScrollTrigger.create({
+    trigger: ".txt-wrap2",
+    start: `top ${imgBottom}px`,
+    end: `top ${imgTop}px`,
+    scrub: true,
+    onUpdate: (self) => {
+        const p = self.progress;
+        const insetTop = p * 100;
+        gsap.set(".img-wrap1", { clipPath: `inset(0% 0% ${insetTop}% 0%)` });
+    }
+});
+
+ScrollTrigger.create({
+    trigger: ".txt-wrap3",
+    start: `top ${imgBottom}px`,
+    end: `top ${imgTop}px`,
+    scrub: true,
+    markers: true,
+    onUpdate: (self) => {
+        const p = self.progress;
+        const insetTop = p * 100;
+        gsap.set(".img-wrap2", { clipPath: `inset(0% 0% ${insetTop}% 0%)` });
+    }
+});
