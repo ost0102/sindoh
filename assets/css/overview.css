@@ -30,6 +30,7 @@
 .s1 .s1-inner .s1-cont .s1-bg_img img{
     width: 100%;
     height: 100%;
+    background: rgba(255, 255, 255, 0.1);
 }
 .s1 .s1-inner .s1-cont .s1-txt{
     position: absolute;
@@ -80,6 +81,10 @@
 }
 .s1 .s1-inner .s1-cont .s1-txt .txt-bottom .s1_sub div.line:nth-child(3){
     margin-bottom: 60px;
+}
+
+.s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
+    top: calc(50% + 225px) !important;
 }
 
 /* 연혁 리스트 나오기 전 위 섹션 이미지 공통 css */
@@ -279,6 +284,7 @@
 .s10 .s10-inner .s10-cont .s10-list li .s10-list--cont .list-txt p:nth-child(2){
     font-family: '4Regular';
     font-size: 2.2rem;
+    line-height: 1.4;
 }
 .s10 .s10-inner .s10-cont .s10-list li .s10-list--cont .list-link{
     position: absolute;
@@ -746,6 +752,10 @@
     }
     .year-common--wrap .year-inner .year-inner--cont .year_sub{
         top: calc(50% + 150px);
+    }
+
+    .s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
+        top: calc(50% + 160px) !important;
     }
 
     .s10 .s10-inner{

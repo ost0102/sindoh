@@ -14,7 +14,7 @@ const tl = gsap.timeline({
 // s1 애니메이션
 tl.
     to("#S1Tl", {
-        duration: 3,
+        duration: 2.3,
         text: "1960년, 대한민국에서<br>시작된 사무혁신",
         ease: "none"
     })
