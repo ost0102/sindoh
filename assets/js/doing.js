@@ -70,7 +70,7 @@ ScrollTrigger.matchMedia({
             ".mobile-img",
             { left: "-50%" },
             {
-                left: "18vw",
+                left: "15vw",
                 duration: 1,
                 scrollTrigger: {
                     trigger: ".s4",
@@ -97,14 +97,15 @@ ScrollTrigger.matchMedia({
         s4Tl
             .to(".mobile-img", { left: "50%", duration: 1 }) 
             .to(".intro", { opacity: 0})
-            .to(".mobile-img", { rotate: -90, scale: 1, duration: 1 })
+            .to(".mobile-img", { rotate: -90, scale: .9, duration: 1 })
             .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 })
             .to(".mobile-txt", { opacity: 1, duration: .3 })
             .to(".pop-inner", {width:"100%", height:"100%", duration:1})
             .to(".mobile-img", { top: "4.4vw", duration: 1 })
             .to(".pop-inner", { top: "-100%", duration: 1 },'<')
             .to(".mobile-txt", { opacity: 0, duration: 1 },'<')
-            .to(".mobile4 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+            .to(".mobile4", {opacity: 1, duration: 1})
+            .to(".mobile4 img", {left:"41.2vw", duration: 1})
             .to(".mobile_behind", { opacity:1, top:"35vw" , duration: 1 })
             .to(".num", { opacity:1, ease:"none" })
             .to(".recipt-txt", { opacity:1, ease:"none" },'<')
@@ -162,7 +163,7 @@ ScrollTrigger.matchMedia({
             .to(".num", { opacity:1, ease:"none" })
             .to(".recipt-txt", { opacity:1, ease:"none" },'<')
             .to({}, { 
-                duration: 1,
+                duration: .1,
                 ease: "none",
                 onUpdate: function() {
                     let progress = this.progress();
@@ -293,7 +294,7 @@ let s5Drag = Draggable.create(list, {
 	inertia: true,
 	bounds: s5Bounds,
 	edgeResistance: 0.8,
-	dragResistance: 0.8,
+	dragResistance: 0.2,
 	cursor: "grab",
 	activeCursor: "grabbing",
 
