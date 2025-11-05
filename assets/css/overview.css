@@ -54,6 +54,7 @@
     margin-bottom: 20px;
     color: #fff;
     opacity: 0;
+    letter-spacing: 2px;
 }
 .s1 .s1-inner .s1-cont .s1-txt .txt-top #S1Tl{
     font-family: '7bold';
@@ -87,9 +88,19 @@
     top: calc(50% + 225px) !important;
 }
 
+.s5 .year-wrap .left{
+    height: 150vh;
+}
+.s7 .year-wrap .left{
+    height: 172vh;
+}
+.s9 .year-wrap .left{
+    height: 159vh;
+}
+
 /* 연혁 리스트 나오기 전 위 섹션 이미지 공통 css */
 .year-common--wrap{
-    height: 800vh;
+    height: 600vh;
     background: #fff;
 }
 .year-common--wrap .year-inner{}
@@ -177,7 +188,6 @@
     align-items: start;
 }
 .year-wrap .left{
-    height: 200vh;
     flex: 1;
 }
 .year-wrap .left .left-inner{

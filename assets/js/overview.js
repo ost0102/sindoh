@@ -22,18 +22,18 @@ tl.
         opacity: 1,
         duration: 1
     })
-    .to(".txt-top", {
-        top: 0,
-        y: 0,
-        duration: 1,
-        ease: "power2.out"
-    })
-    .to(".s1 .s1-txt .txt-top span", {
-        opacity: 1,
-        top: 0,
-        duration: 1,
-        ease: "power2.out"
-    }, "<");
+    // .to(".txt-top", {
+    //     top: 0,
+    //     y: 0,
+    //     duration: 1,
+    //     ease: "power2.out"
+    // })
+    // .to(".s1 .s1-txt .txt-top span", {
+    //     opacity: 1,
+    //     top: 0,
+    //     duration: 1,
+    //     ease: "power2.out"
+    // }, "<");
 
 
 
@@ -54,7 +54,30 @@ setTimeout(() => {
             trigger: ".s1",
             start: "2% top",
             end: "50% bottom",
-            scrub: true,
+            scrub: true, 
+            onEnter: () => {
+                gsap.to(".txt-top", {
+                    top: 0,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".s1",
+                        start: "2% top",
+                        end: "50% bottom",
+                        scrub: true,  // 스크롤에 따라 움직이게
+                        onEnter: () => {
+                            gsap.to(".s1 .s1-txt .txt-top span", {
+                                opacity: 1,
+                                top: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                                stagger: 0.1
+                            });
+                        }
+                    }
+                });
+            },
         },
     });
 }, 1000);
@@ -110,7 +133,7 @@ function createSectionAnimation(sectionClass) {
         scrollTrigger: {
             trigger: `.${sectionClass}`,
             start: "top top",
-            end: sectionClass === "s2" ? "30% bottom" : "20% bottom",
+            end: sectionClass === "s2" ? "40% bottom" : "30% bottom",
             scrub: true,
             ease: "power2.out",
         }
@@ -128,10 +151,9 @@ function createSectionAnimation(sectionClass) {
             scrollTrigger: {
                 trigger: `.${sectionClass}`,
                 start: "0.8% top",
-                end: "110% bottom",
+                end: "120% bottom",
                 scrub: true,
                 ease: "power2.out",
-                markers: true,
             }
         });
     }
@@ -140,8 +162,8 @@ function createSectionAnimation(sectionClass) {
     gsap.timeline({
         scrollTrigger: {
             trigger: `.${sectionClass}`,
-            start: sectionClass === "s2" ? "30% bottom" : "20% bottom",
-            end: "70% bottom",
+            start: sectionClass === "s2" ? "40% bottom" : "30% bottom",
+            end: "50% bottom",
             scrub: true,
             ease: "power2.out",
         }
@@ -164,7 +186,7 @@ function createSectionAnimation(sectionClass) {
     gsap.timeline({
         scrollTrigger: {
             trigger: `.${sectionClass}`,
-            start: "70% bottom",
+            start: "50% bottom",
             end: "90% bottom",
             scrub: true,
             ease: "power2.out",
@@ -237,14 +259,14 @@ $(function(){
     });
 
     // 연혁 갯수에 따른 높이 조절
-    $(".year-wrap").each(function(){
-        const $wrap = $(this);
-        const itemCount = $wrap.find(".right .year-list--cont > li").length;
-        let heightVh = "200vh"; // 기본값
-        if(itemCount >= 1 && itemCount <= 3) heightVh = "100vh";
-        else if(itemCount >= 4 && itemCount <= 6) heightVh = "150vh";
-        else if(itemCount >= 7 && itemCount <= 9) heightVh = "180vh";
-        else if(itemCount >= 10) heightVh = "200vh";
-        $wrap.find(".left").css("height", heightVh);
-    });
+    // $(".year-wrap").each(function(){
+    //     const $wrap = $(this);
+    //     const itemCount = $wrap.find(".right .year-list--cont > li").length;
+    //     let heightVh = "200vh"; // 기본값
+    //     if(itemCount >= 1 && itemCount <= 3) heightVh = "100vh";
+    //     else if(itemCount >= 4 && itemCount <= 6) heightVh = "150vh";
+    //     else if(itemCount >= 7 && itemCount <= 9) heightVh = "180vh";
+    //     else if(itemCount >= 10) heightVh = "200vh";
+    //     $wrap.find(".left").css("height", heightVh);
+    // });
 });
