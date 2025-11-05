@@ -14,7 +14,7 @@ const tl = gsap.timeline({
 // s1 애니메이션
 tl.
     to("#S1Tl", {
-        duration: 2.3,
+        duration: 1,
         text: "1960년, 대한민국에서<br>시작된 사무혁신",
         ease: "none"
     })
@@ -62,12 +62,10 @@ setTimeout(() => {
 setTimeout(() => {
     gsap.to(s1Chars, {
         color: "#fff",
-        ease: "none",
         stagger: 1,
-        duration: 2,
         scrollTrigger: {
             trigger: ".s1",
-            start: "30% bottom",
+            start: "50% bottom",
             end: "bottom bottom",
             scrub: true,
         }
@@ -129,10 +127,11 @@ function createSectionAnimation(sectionClass) {
             top: "-100%",
             scrollTrigger: {
                 trigger: `.${sectionClass}`,
-                start: "top top",
-                end: "100% bottom",
+                start: "0.8% top",
+                end: "110% bottom",
                 scrub: true,
                 ease: "power2.out",
+                markers: true,
             }
         });
     }

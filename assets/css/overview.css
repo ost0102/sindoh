@@ -1,7 +1,7 @@
 /* s1(첫 번째 섹션) */
 .s1{
     position: relative;
-    height: 1000vh;
+    height: 300vh;
 }
 .s1 .s1-inner{}
 .s1 .s1-inner .s1-cont{
