@@ -31,31 +31,32 @@ s2Tl
 
 // section3
 gsap.fromTo(
-    ".s3",
+    ".s3-cont",
     { clipPath: "inset(100% 0 0 0)" }, 
     { 
         clipPath: "inset(0% 0 0 0)",  
         scrollTrigger: {
-            trigger: ".s2",
-            start: "30% bottom",   
-            end: "bottom 40%",     
+            trigger: ".s3-cont",
+            start: "80% bottom",   
+            end: "bottom top",     
             scrub: true,
-        }
+        
+		},
     }
 );
 
 
 // section3
 ScrollTrigger.create({
-    trigger: ".s3",
-    start: "700vh 20%",
-    end: "100% 80%",
+    trigger: ".s3-inner",
+    start: "100% top",
+    end: "400% top",
     scrub: true,
+	markers: true,
     onUpdate: function(self){
         var $el = $('.rolling-txt');
         if (!$el.length) return;
         var p = self.progress;
-		console.log(p);
         var stepIndex = (p >= 0.8) ? 5 : (p >= 0.6) ? 4 : (p >= 0.4) ? 3 : (p >= 0.2) ? 2 : 1;
         for (var i = 1; i <= 5; i++) {
             $el.removeClass('step0' + i);
@@ -105,7 +106,7 @@ let s4Drag = Draggable.create(list, {
 	inertia: true,
 	bounds: s4Bounds,
 	edgeResistance: 0.8,
-	dragResistance: 0.8,
+	dragResistance: 0.2,
 	cursor: "grab",
 	activeCursor: "grabbing",
 
