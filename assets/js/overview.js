@@ -65,7 +65,7 @@ setTimeout(() => {
                         trigger: ".s1",
                         start: "2% top",
                         end: "50% bottom",
-                        scrub: true,  // 스크롤에 따라 움직이게
+                        scrub: true,
                         onEnter: () => {
                             gsap.to(".s1 .s1-txt .txt-top span", {
                                 opacity: 1,
@@ -150,9 +150,10 @@ function createSectionAnimation(sectionClass) {
             top: "-100%",
             scrollTrigger: {
                 trigger: `.${sectionClass}`,
-                start: "0.8% top",
-                end: "120% bottom",
+                start: "top top",
+                end: "160% bottom",
                 scrub: true,
+                markers: true,
                 ease: "power2.out",
             }
         });

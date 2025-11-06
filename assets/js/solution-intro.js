@@ -50,9 +50,10 @@ s3Tl
 // section4
 ScrollTrigger.create({
     trigger: ".s4",
-    start: "20% top",
+    start: "30% top",
     end: "bottom bottom",
     scrub: true,
+    markers: true,
     onUpdate: function (self) {
         var p = self.progress;
         var items = document.querySelectorAll(".s4-list .list-cont");
