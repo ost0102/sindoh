@@ -47,11 +47,10 @@ s3Tl
     .fromTo(".s3-cont", { top: "100%" }, { top: "50%" })
     .to(".s3 .s3-inner .s3-cont .s3-list", { gap: "42px", ease: "none" }, 0);
 
-
 // section4
 ScrollTrigger.create({
     trigger: ".s4",
-    start: "top top",
+    start: "20% top",
     end: "bottom bottom",
     scrub: true,
     onUpdate: function (self) {
@@ -70,10 +69,25 @@ ScrollTrigger.create({
         });
     }
 });
+gsap.fromTo(
+    ".s4",
+    { clipPath: "inset(100% 0 0 0)" }, 
+    { 
+        clipPath: "inset(0% 0 0 0)",  
+        scrollTrigger: {
+            trigger: ".s4",
+            start: "30% bottom",   
+            end: "bottom 40%",     
+            scrub: true,
+        }
+    }
+);
+
+
 
 // section7
 const slideTl = gsap.to(".s7-list", {
-	x: "-20%",
+	x: "-10%",
 	duration: 5,
 	ease: "none",
 	repeat: -1,

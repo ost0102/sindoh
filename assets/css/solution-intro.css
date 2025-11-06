@@ -90,7 +90,7 @@
 .s3 .s3-inner .s3-cont .s3-list{
     display: flex;
     flex-direction: column;
-    gap: 93px;
+    gap: 150px;
     width: 100%;
 }
 .s3 .s3-inner .s3-cont .s3-list li{
@@ -104,10 +104,12 @@
 .s3 .s3-inner .s3-cont .s3-list li:nth-child(4){
     margin-right: auto;
 }
-
 .s3 .s3-inner .s3-cont .s3-list .list-cont{
     background: #f5f5f5;
-    padding: 17px 21px;
+    width: 600px;
+    height: 68px;
+    text-align: center;
+    line-height: 68px;
 }
 .s3 .s3-inner .s3-cont .s3-list .list-cont p{
     font-family: '5medium';
@@ -140,8 +142,11 @@
 
 
 .s4{
+    position: relative;
+    z-index: 1;
     height: 300vh;
     background: #000;
+    margin-top: -300vh;
 }
 .s4 .s4-inner{
 }
@@ -154,7 +159,7 @@
 }
 .s4 .s4-inner .s4-cont .s4-title{
     text-align: center;
-    margin-bottom: 52px;
+    margin-bottom: 40px;
 }
 .s4 .s4-inner .s4-cont .s4-title h2{
     font-family: '6semi';
@@ -164,7 +169,7 @@
 .s4 .s4-inner .s4-cont .s4-link{
     display: flex;
     justify-content: center;
-    margin-bottom: 114px;
+    margin-bottom: 120px;
 }
 .s4 .s4-inner .s4-cont .s4-link a{
     display: flex;
@@ -298,11 +303,11 @@
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt p:nth-child(1){
     font-family: '5medium';
-    font-size: 1.1vw;
+    font-size: 0.83vw;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt p:nth-child(2){
     font-family: '6semi';
-    font-size: 1.5vw;
+    font-size: 1.25vw;
 }
 
 .s6{
@@ -332,7 +337,7 @@
 }
 .s6 .s6-inner .s6-cont .txt-box .top p{
     font-family: '6semi';
-    font-size: 1.6vw;
+    font-size: 1.35vw;
 }
 .s6 .s6-inner .s6-cont .txt-box .bottom{
     
@@ -356,7 +361,7 @@
 .s7 .s7-inner .s7-list{
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 40px;
     padding: 55px 0;
 }
 .s7 .s7-inner .s7-list li{
@@ -375,7 +380,7 @@
 
 .s8{
     position: relative;
-    height: 57vh;
+    height: 50vh;
 }
 .s8 .s8-inner{
     width: 100%;
@@ -430,6 +435,11 @@
     }
     .s3 .s3-inner .s3-cont .s3-title p{
         font-size: 2rem;
+    }
+    .s3 .s3-inner .s3-cont .s3-list .list-cont{
+        width: 500px;
+        height: 50px;
+        line-height: 50px;
     }
     .s3 .s3-inner .s3-cont .s3-list .list-cont p{
         font-size: 2.4rem;
@@ -506,7 +516,10 @@
         font-size: 2rem;
     }
     .s3 .s3-inner .s3-cont .s3-list .list-cont{
-        padding: 7px 11px;
+        width: 400px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 auto;
     }
 
     .s4 .s4-inner .s4-cont .s4-title h2{
@@ -640,6 +653,12 @@
     }
     .s3 .s3-inner .s3-cont{
         gap: 100px;
+    }
+    .s3 .s3-inner .s3-cont .s3-list .list-cont{
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 auto;
     }
     .s3 .s3-inner .s3-cont .s3-list .list-cont p{
         font-size: 1.4rem;
