@@ -52,7 +52,6 @@ ScrollTrigger.create({
     start: "100% top",
     end: "400% top",
     scrub: true,
-	markers: true,
     onUpdate: function(self){
         var $el = $('.rolling-txt');
         if (!$el.length) return;
