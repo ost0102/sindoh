@@ -14,7 +14,7 @@ window.addEventListener("resize", () => {
     isDesktop = currentIsDesktop;
 });
 
-// 비디오 로드 후 애니메이션 실행 함수
+// 비디오 애니메이션 설정 함수
 function setupVideoAnimation(video) {
     gsap.to(video, {
         currentTime: video.duration,
@@ -29,15 +29,17 @@ function setupVideoAnimation(video) {
     });
 }
 
+// 비디오 설정
 const video = document.getElementById("video");
 
 if (window.innerWidth >= 1025) {
-    // 비디오가 완전히 로드된 후 실행
+    // 비디오 메타데이터 로드 후 애니메이션 설정
     video.addEventListener("loadedmetadata", () => {
         console.log("비디오 메타데이터 로드 완료:", video.duration);
         setupVideoAnimation(video);
     });
 } else {
+    // 1025px 이하일 때는 바로 비디오 재생
     video.play();
 }
 
