@@ -16,27 +16,29 @@ window.addEventListener("resize", () => {
 
 // 비디오 로드 후 애니메이션 실행 함수
 function setupVideoAnimation(video) {
-    video.addEventListener("loadedmetadata", () => {
-        gsap.to(video, {
-            currentTime: video.duration,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".s1-inner",
-                start: "0% 0%",
-                end: "100% 100%",
-                scrub: true,
-                anticipatePin: 1,
-            }
-        });
+    gsap.to(video, {
+        currentTime: video.duration,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".s1-inner",
+            start: "0% 0%",
+            end: "100% 100%",
+            scrub: true,
+            anticipatePin: 1,
+        }
     });
 }
 
-// 화면 크기가 1025px 이상일 경우
 const video = document.getElementById("video");
+
 if (window.innerWidth >= 1025) {
-    setupVideoAnimation(video);  // 비디오 로드 후 애니메이션 실행
+    // 비디오가 완전히 로드된 후 실행
+    video.addEventListener("loadedmetadata", () => {
+        console.log("비디오 메타데이터 로드 완료:", video.duration);
+        setupVideoAnimation(video);
+    });
 } else {
-    video.play();  // 1025px 이하일 때는 바로 비디오 재생
+    video.play();
 }
 
 // 이미지 및 스크롤 애니메이션
