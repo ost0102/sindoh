@@ -394,6 +394,10 @@
 .s5 .s5-inner .s5-cont .s5-list li:hover{
     width: 70%;
 }
+.s5 .s5-inner .s5-cont .s5-list li:hover img{
+    left: 0 !important;
+    transition: all .4s ease;
+}
 .s5 .s5-inner .s5-cont .s5-list .list-cont{
     
 }
@@ -407,12 +411,15 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover{
     /* width: 760px; */
 }
+.s5 .s5-inner .s5-cont .s5-list li:nth-child(2) img{
+    transition: all .4s ease;
+}
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
     position: absolute;
     max-width: 760px;
     height: 100%;
     top: 0;
-    left: 0;
+    left: -25%;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt{
     display: flex;
