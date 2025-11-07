@@ -53,7 +53,6 @@ ScrollTrigger.create({
     start: "30% top",
     end: "bottom bottom",
     scrub: true,
-    markers: true,
     onUpdate: function (self) {
         var p = self.progress;
         var items = document.querySelectorAll(".s4-list .list-cont");

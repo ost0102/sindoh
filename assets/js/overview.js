@@ -153,7 +153,6 @@ function createSectionAnimation(sectionClass) {
                 start: "top top",
                 end: "160% bottom",
                 scrub: true,
-                markers: true,
                 ease: "power2.out",
             }
         });
