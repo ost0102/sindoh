@@ -2,6 +2,7 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
 
+
 document.addEventListener("DOMContentLoaded", () => {
     // Lenis 초기화
     const lenis = new Lenis({
@@ -48,4 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 3000);
     }
+
+    function initFullPage() {
+        if (typeof $.fn.fullpage !== "undefined") {
+            $('.fullpage').fullpage({
+                autoScrolling: true,
+                scrollingSpeed: 1000
+            });
+            $.fn.fullpage.isFullpage = true; // fullPage.js 초기화 상태 표시
+            console.log("fullPage.js가 로드");
+        } else {
+            console.error("fullPage.js가 로드되지 않았습니다.");
+        }
+    }
+    initFullPage();
 });

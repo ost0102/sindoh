@@ -162,9 +162,12 @@
     position: relative;
     margin-top: -300vh;
     z-index: 2;
-    height: 400vh;
+    height: 600vh;
+}
+.s3-cont{
     background: #000;
     clip-path: inset(100% 0% 0% 0%);
+    height: 100%;
 }
 .s3 .s3-inner .inner-txt{
     position: absolute;

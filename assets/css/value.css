@@ -15,9 +15,10 @@
 }
 .s1 .s1-inner .btn-wrap{
     position: absolute;
-    bottom: 250px;
+    bottom: 20%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
 }
 .s1 .s1-inner .btn-wrap .download{
     display: flex;

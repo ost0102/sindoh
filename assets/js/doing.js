@@ -8,7 +8,8 @@ gsap.to(".s1-bg", {
         trigger: ".s1",
         start: "5% top",
         end: "bottom bottom",
-        scrub: true,
+        scrub: 1,
+        anticipatePin: 1
     }
 });
 
@@ -30,14 +31,14 @@ s2Tl
 
 // section3
 gsap.fromTo(
-    ".s3",
+    ".s3-cont",
     { clipPath: "inset(100% 0 0 0)" }, 
     { 
         clipPath: "inset(0% 0 0 0)",  
         scrollTrigger: {
-        trigger: ".s2",
-            start: "30% bottom",   
-            end: "bottom top",       
+        trigger: ".s3-cont",
+            start: "bottom 20%",   
+            end: "200% top",       
             scrub: true,
         }
     }
@@ -51,8 +52,8 @@ let s3Chars2 = s3Split2.chars;
 let s3Tl = gsap.timeline({
 	scrollTrigger:{
 		trigger: ".s3",
-		start: "30% top",
-		end: "bottom bottom",
+		start: "40% top",
+		end: "90% bottom",
 		scrub: true,
 	}
 })
@@ -89,7 +90,7 @@ ScrollTrigger.matchMedia({
             scrollTrigger: {
                 trigger: ".s4",
                 start: "21% top",
-                end: "90% bottom",
+                end: "85% bottom",
                 scrub: true,
             }
         });
@@ -101,8 +102,8 @@ ScrollTrigger.matchMedia({
             .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 })
             .to(".mobile-txt", { opacity: 1, duration: .3 })
             .to(".pop-inner", {width:"100%", height:"100%", duration:1})
-            .to(".mobile-img", { top: "4.4vw", duration: 1 })
-            .to(".pop-inner", { top: "-100%", duration: 1 },'<')
+            .to(".mobile-img", { top: "4.4vw", duration: 1, delay:3 })
+            .to(".pop-inner", { top: "-100%", duration: 3 },'<')
             .to(".mobile-txt", { opacity: 0, duration: 1 },'<')
             .to(".mobile4", {opacity: 1, duration: 1})
             .to(".mobile4 img", {left:"41.2vw", duration: 1})
@@ -114,7 +115,7 @@ ScrollTrigger.matchMedia({
                 ease: "none",
                 onUpdate: function() {
                     let progress = this.progress();
-                    let value = Math.round(progress * 119000);
+                    let value = Math.round(progress * 33000);
                     numod.update(value);
                 }
             },'<');
@@ -145,7 +146,7 @@ ScrollTrigger.matchMedia({
             scrollTrigger: {
                 trigger: ".s4",
                 start: "21% top",
-                end: "90% bottom",
+                end: "85% bottom",
                 scrub: true,
             }
         })
@@ -167,7 +168,7 @@ ScrollTrigger.matchMedia({
                 ease: "none",
                 onUpdate: function() {
                     let progress = this.progress();
-                    let value = Math.round(progress * 119000);
+                    let value = Math.round(progress * 33000);
                     numod.update(value);
                 }
             });
@@ -199,7 +200,7 @@ ScrollTrigger.matchMedia({
             scrollTrigger: {
                 trigger: ".s4",
                 start: "21% top",
-                end: "90% bottom",
+                end: "85% bottom",
                 scrub: true,
             }
         })
@@ -221,7 +222,7 @@ ScrollTrigger.matchMedia({
                 ease: "none",
                 onUpdate: function() {
                     let progress = this.progress();
-                    let value = Math.round(progress * 119000);
+                    let value = Math.round(progress * 33000);
                     numod.update(value);
                 }
             });
@@ -338,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const s5Element = document.querySelector('.s5');
 	if (s5Element) {
 		const rect = s5Element.getBoundingClientRect();
-		if (rect.top < window.innerHeight * 0.8) {
+			if (rect.top <= 450) {
 			restartAutoSlide();
 		}
 	}
@@ -347,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // s5 섹션에 진입할 때 자동 슬라이드 시작
 ScrollTrigger.create({
 	trigger: ".s5",
-	start: "top 80%",
+		start: "top 450px",
 	onEnter: function() {
 		restartAutoSlide();
 	},

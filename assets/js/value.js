@@ -35,13 +35,27 @@ const video = document.getElementById("video");
 if (window.innerWidth >= 1025) {
     // 비디오 메타데이터 로드 후 애니메이션 설정
     video.addEventListener("loadedmetadata", () => {
-        console.log("비디오 메타데이터 로드 완료:", video.duration);
         setupVideoAnimation(video);
     });
 } else {
     // 1025px 이하일 때는 바로 비디오 재생
     video.play();
 }
+
+gsap.fromTo(
+    ".btn-wrap",
+    { bottom: "20%", opacity: 0 }, 
+    { 
+        opacity: 1,
+        bottom: "25%",
+        scrollTrigger: {
+            trigger: ".s1-inner",
+            start: "85% 0%",
+            end: "100% 100%",
+            scrub: true,
+        }
+    }
+);
 
 // 이미지 및 스크롤 애니메이션
 const img = document.querySelector(".mo-s4 .img-wrap img");
