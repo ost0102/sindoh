@@ -193,11 +193,22 @@
 .s4 .s4-inner .s4-cont .s4-list li .list-cont{
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: 17% 10%;
     transition: all .3s ease;
 }
-.s4 .s4-inner .s4-cont .s4-list li .list-cont.on{
+.s4 .s4-inner .s4-cont .s4-list li .list-cont .list-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
     background: #6F36FF;
+    z-index: -1;
+    transition: width .3s ease;
+}
+.s4 .s4-inner .s4-cont .s4-list li .list-cont.on .list-bg{
+    width: 100%;
 }
 .s4 .s4-inner .s4-cont .s4-list li .list-cont .list-img{
     margin-bottom: 53px;
@@ -269,30 +280,40 @@
 }
 .s5 .s5-inner .s5-cont .s5-list li{
     width: 33.3333%;
-    transition: width .4s cubic-bezier(.33, 1, .68, 1);
+    /* transition: width .4s cubic-bezier(.33, 1, .68, 1); */
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
     width: 70%;
 }
+.s5 .s5-inner .s5-cont .s5-list li:hover img{
+    left: 0 !important;
+    transition: all .4s ease;
+}
 .s5 .s5-inner .s5-cont .s5-list .list-cont{
     
 }
-.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
     position: relative;
-    /* width: 100%; */
-    height: 500px;
     margin-bottom: 24px;
     overflow: hidden;
+    aspect-ratio: 1 / 1;
+    height: unset;
+    transition: none;
 }
-.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover{
-    /* width: 760px; */
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover {
+    height: 500px;
+    aspect-ratio: unset;
+    transition: none; 
+}
+.s5 .s5-inner .s5-cont .s5-list li:nth-child(2) img{
+    transition: all .4s ease;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
     position: absolute;
     max-width: 760px;
     height: 100%;
     top: 0;
-    left: 0;
+    left: -25%;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt{
     display: flex;
@@ -580,6 +601,7 @@
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
         position: unset;
         height: unset;
+        aspect-ratio: 9/6;
         margin-bottom: 10px;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{

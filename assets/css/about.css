@@ -224,7 +224,7 @@
 .s4{
     position: relative;
     background: #000;
-    height: 120vh;
+    height: 100vh;
 }
 .s4 .s4-inner{
     position: absolute;
@@ -389,7 +389,7 @@
 }
 .s5 .s5-inner .s5-cont .s5-list li{
     width: 33.3333%;
-    transition: width .4s cubic-bezier(.33, 1, .68, 1);
+    /* transition: width .4s cubic-bezier(.33, 1, .68, 1); */
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
     width: 70%;
@@ -401,15 +401,18 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont{
     
 }
-.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
     position: relative;
-    /* width: 100%; */
-    height: 500px;
     margin-bottom: 24px;
     overflow: hidden;
+    aspect-ratio: 1 / 1;
+    height: unset;
+    transition: none;
 }
-.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover{
-    /* width: 760px; */
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover {
+    height: 500px;
+    aspect-ratio: unset;
+    transition: none; 
 }
 .s5 .s5-inner .s5-cont .s5-list li:nth-child(2) img{
     transition: all .4s ease;
@@ -630,6 +633,7 @@
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
         position: unset;
         height: unset;
+        aspect-ratio: 9/6;
         margin-bottom: 10px;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{

@@ -381,7 +381,7 @@
 }
 .s4 .s4-inner .s4-cont .pop-area_mo .pop-inner{
     position: absolute;
-    top: 125%;
+    top: 140%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -872,5 +872,17 @@
     }
     .s5 .s5-inner .s5-footer .s5-footer--inner .inquiry a svg{
         width:12px;
+    }
+}
+
+@media (max-width:400px){
+    .s4 .s4-inner .s4-cont .num {
+        top: 70%;
+    }
+    .s4 .s4-inner .s4-cont .recipt-txt{
+        top: 75%;
+    }
+    .s4 .s4-inner .s4-cont .recipt-txt img{
+        width: 20px;
     }
 }

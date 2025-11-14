@@ -1,40 +1,57 @@
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+if (!window.lenis) {
+    window.lenis = new Lenis({ duration: 1.2, smooth: true });
+  }
+  lenis.stop(); // 초기 정지
 
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
 
-lenis.stop(); // 최초 lenis 멈춤
-// gsap.set("html, body", { overflow: "hidden" }); // 최초 스크롤 안보이게
+  document.body.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
 
-const tl = gsap.timeline({
-    onComplete: () => {
-        lenis.start();
-        // $("html, body").css("overflow", "auto");
-    }
-});
+  // 3️⃣ TypeIt 타이핑 애니메이션
+  function typeText() {
+    return new Promise((resolve) => {
+      new TypeIt("#S1Tl", {
+        strings: "1960년, 대한민국에서<br>시작된 사무혁신",
+        speed: 100,
+        cursor: true,
+        cursorChar: "|",
+        lifeLike: true,
+        afterComplete: () => {
+          // 커서 숨기기
+          const cursor = document.querySelector("#S1Tl .ti-cursor");
+          if (cursor) cursor.style.display = "none";
 
-// s1 애니메이션
-tl.
-    to("#S1Tl", {
-        duration: 1,
-        text: "1960년, 대한민국에서<br>시작된 사무혁신",
-        ease: "none"
-    })
+          // body/html overflow 복원
+          document.body.style.overflow = "";
+          document.documentElement.style.overflow = "";
+
+          // Lenis 시작
+          lenis.start();
+          resolve();
+        }
+      }).go();
+    });
+  }
+
+  // 3️⃣ GSAP timeline 통합
+  gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline();
+
+  tl.add(() => typeText()) // 타이핑 끝날 때까지 대기
     .to(".s1 .s1-inner .s1-cont .s1-bg_img", {
-        opacity: 1,
-        duration: 1
-    })
-    // .to(".txt-top", {
-    //     top: 0,
-    //     y: 0,
-    //     duration: 1,
-    //     ease: "power2.out"
-    // })
-    // .to(".s1 .s1-txt .txt-top span", {
-    //     opacity: 1,
-    //     top: 0,
-    //     duration: 1,
-    //     ease: "power2.out"
-    // }, "<");
-
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+      onComplete: () => {
+        // 타이핑 + 배경 애니메이션 끝나면 Lenis 시작
+        lenis.start();
+      }
+    });
 
 
 let s1Split = new SplitType(".s1_sub", { types: "lines, words, chars" });
@@ -45,41 +62,35 @@ let s1Chars = s1Split.chars;
 gsap.set(s1Lines, { opacity: 0 });
 
 setTimeout(() => {
-    gsap.to(s1Lines, {
-        opacity: 1,
-        duration: 2.5,
-        stagger: 0.08,
-        ease: "power3.out",
+    const timeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".s1",
             start: "2% top",
             end: "50% bottom",
-            scrub: true, 
-            onEnter: () => {
-                gsap.to(".txt-top", {
-                    top: 0,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: ".s1",
-                        start: "2% top",
-                        end: "50% bottom",
-                        scrub: true,
-                        onEnter: () => {
-                            gsap.to(".s1 .s1-txt .txt-top span", {
-                                opacity: 1,
-                                top: 0,
-                                duration: 1,
-                                ease: "power2.out",
-                                stagger: 0.1
-                            });
-                        }
-                    }
-                });
-            },
-        },
+            scrub: true,
+        }
     });
+
+    timeline
+        .to(s1Lines, {
+            opacity: 1,
+            duration: 2.5,
+            stagger: 0.08,
+            ease: "power3.out",
+        })
+        .to(".txt-top", {
+            top: 0,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+        })
+        .to(".s1 .s1-txt .txt-top span", {
+            opacity: 1,
+            top: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+        });
 }, 1000);
 
 setTimeout(() => {
@@ -89,11 +100,11 @@ setTimeout(() => {
         scrollTrigger: {
             trigger: ".s1",
             start: "50% bottom",
-            end: "bottom bottom",
+            end: "90% bottom",
             scrub: true,
         }
     });
-},1000)
+}, 1000);
 
 function initClipPathAnim() {
     ScrollTrigger.getAll().forEach(st => st.kill());
@@ -102,24 +113,41 @@ function initClipPathAnim() {
         ? "inset(25% 35% 25% 35%)"
         : "inset(25% 43% 25% 43%)";
 
-    gsap.fromTo(
-        ".s1 .s1-inner .s1-cont .s1-bg_img",
-        { clipPath: startClipPath },
-        { 
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 2.5,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: ".s1",
-                start: "2% top",
-                end: "50% bottom",
-                scrub: true,
-            }
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".s1",
+            start: "2% top",
+            end: "50% bottom",
+            scrub: true,
         }
-    );
+    });
+
+    // 이미지 clipPath 애니메이션과 텍스트 애니메이션을 동시에 실행
+    timeline
+        .fromTo(
+            ".s1 .s1-inner .s1-cont .s1-bg_img",
+            { clipPath: startClipPath },
+            { 
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 2.5,
+                ease: "power3.out",
+            })
+        .to(".txt-top", {
+            top: 0,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+        }, "<")  
+        .to(".s1 .s1-txt .txt-top span", {
+            opacity: 1,
+            top: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+        }, "<");  
 }
 
-  // 초기 실행
+// 초기 실행
 initClipPathAnim();
 
 // 윈도우 크기 바뀔 때 다시 실행

@@ -83,7 +83,24 @@ gsap.fromTo(
     }
 );
 
+// section5
+const listImages = document.querySelectorAll('.s5 .list-img');
 
+listImages.forEach(img => {
+    img.addEventListener('mouseenter', () => {
+        listImages.forEach(image => {
+            image.style.height = '500px';
+            image.style.aspectRatio = 'unset';
+        });
+    });
+
+    img.addEventListener('mouseleave', () => {
+        listImages.forEach(image => {
+            image.style.height = 'unset';
+            image.style.aspectRatio = '1 / 1';
+        });
+    });
+});
 
 // section7
 const slideTl = gsap.to(".s7-list", {
@@ -92,7 +109,7 @@ const slideTl = gsap.to(".s7-list", {
 	ease: "none",
 	repeat: -1,
 });
-document.querySelectorAll(".list-img").forEach((imgWrap) => {
+document.querySelectorAll(".s7 .list-img").forEach((imgWrap) => {
 	const onImg = imgWrap.querySelector(".on");
 	const offImg = imgWrap.querySelector(".off");
 

@@ -32,7 +32,7 @@ if (window.innerWidth >= 1025) {
     gsap.set(".point-box img", { y: "16%", opacity: 0 });
     gsap.set(".point-box .txt-wrap .txt1 p, .point-box .txt-wrap .txt2 p", { y: "100%", opacity: 0 });
 
-    const video2 = document.querySelector(".s3 .video-wrap video");
+    const video2 = document.getElementById("video2");
 
     const PointTl = gsap.timeline({
         scrollTrigger: {

@@ -1,3 +1,17 @@
+/* 스크롤 중 걸림 효과 (CSS Scroll Snap) - 부드러운 버전 */
+html {
+    scroll-snap-type: y proximity;
+    /* 스냅 위치에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
+    /* scroll-padding-top: 100px;  */
+}
+
+/* 걸림 대상 섹션: s3, s5, s7, s9, s11 */
+.s3, .s5, .s7, .s9, .s11 {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    /* 섹션 상단에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
+    /* scroll-margin-top: 50px; */
+}
 /* s1(첫 번째 섹션) */
 .s1{
     position: relative;
@@ -46,7 +60,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
 }
-.s1 .s1-inner .s1-cont .s1-txt .txt-top span{
+.s1 .s1-inner .s1-cont .s1-txt .txt-top > span{
     position: relative;
     top: 30px;
     font-family: '4Regular';
@@ -407,7 +421,7 @@
     flex-direction: column;
     gap: 52px;
 }
-.s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa{
+.s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa a{
     display: flex;
     align-items: center;
     gap: 16px;
@@ -700,7 +714,7 @@
         align-items: center;
         gap: 30px;
     }
-    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa{
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa a{
         width: 175px;
         gap: 10px;
     }
@@ -761,7 +775,7 @@
         height: 200px;
     }
     .year-common--wrap .year-inner .year-inner--cont .year_sub{
-        top: calc(50% + 150px);
+        top: calc(50% + 180px) !important;
     }
 
     .s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
@@ -795,5 +809,25 @@
 
     .s11 .s11-inner .s11-title{
         font-size: 4rem;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-list .sindo-list--cont .cont-img img{
+        width: 30px;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-list .sindo-list--cont .cont-txt p:nth-child(1){
+        font-size: 1.6rem;
+    }.s11 .s11-inner .s11-cont .s11-cont--inner .sindo-list .sindo-list--cont .cont-txt p:nth-child(2){
+        font-size: 1.2rem;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa svg{
+        width: 16px;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa .jisa-txt{
+        gap: 3px;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa .jisa-txt p:nth-child(1){
+        font-size: 1.4rem;
+    }
+    .s11 .s11-inner .s11-cont .s11-cont--inner .sindo-area .sindo_jisa .jisa-cont .jisa .jisa-txt p:nth-child(2){
+        font-size: 1.1rem;
     }
 }

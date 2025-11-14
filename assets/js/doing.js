@@ -226,6 +226,60 @@ ScrollTrigger.matchMedia({
                     numod.update(value);
                 }
             });
+    },
+
+    "(max-width: 400px)": function(){
+        gsap.fromTo(
+            ".mobile-img",
+            { top: "150%" },
+            {
+                top: "65%",
+                duration: 1,
+                scrollTrigger: {
+                    trigger: ".s4",
+                    start: "top top",
+                    end: "20% bottom",
+                    scrub: true,
+                }
+            }
+        )
+
+        let numod = new Odometer({
+            el: document.querySelector('.s4 .num p'),
+        });
+
+        gsap.set(".mobile-txt",{top:"250px"})
+        gsap.set(".mobile_behind",{top:"240px"})
+        let s4Tl2 = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".s4",
+                start: "21% top",
+                end: "85% bottom",
+                scrub: true,
+            }
+        })
+
+        s4Tl2
+            .to(".intro", { opacity: 0, duration:1})
+            .to(".intro-txt", {top: "-100px", opacity:0, duration:1},'<')
+            .to(".mobile-txt", {opacity:1, top: "140px", duration:1},'<')
+            .to(".mobile3 img", { clipPath: "inset(0% 0% 0% 0%)", duration: 1 },'<')
+            .to(".pop-area_mo .pop-inner", {top:"50%", duration:1}) 
+            .to(".pop-area_mo .pop-inner", {top:"-30%", opacity:0, duration:1}) 
+            .to(".mobile5 img", {clipPath:"inset(0% 0% 0% 0%)", duration: 1})
+            .to(".mobile-txt", {opacity:0, top: "70px", duration:1},'<')
+            .to(".mobile_behind", {opacity:1, top:"130px", duration: 1},'<')
+            .to(".num", { opacity:1, ease:"none" })
+            .to(".recipt-txt", { opacity:1, ease:"none" },'<')
+            .to({}, { 
+                duration: 1,
+                ease: "none",
+                onUpdate: function() {
+                    let progress = this.progress();
+                    let value = Math.round(progress * 33000);
+                    numod.update(value);
+                }
+            });
     }
 });
 
