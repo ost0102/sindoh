@@ -1,11 +1,11 @@
-html {
+/* html {
     scroll-snap-type: y proximity;
 }
 
 .s5 {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
-}
+} */
 
 .s1{
     position: relative;

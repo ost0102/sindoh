@@ -1,4 +1,4 @@
-html {
+/* html {
     scroll-snap-type: y proximity;
 }
 
@@ -6,7 +6,7 @@ html {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
     scroll-margin-top: -300px;
-}
+} */
 
 /* s1(첫 번째 섹션) */
 .s1{

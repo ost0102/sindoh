@@ -1,4 +1,4 @@
-html {
+/* html {
     scroll-snap-type: y proximity;
     /* 스냅 위치에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
     /* scroll-padding-top: 100px;  */
@@ -10,7 +10,7 @@ html {
     scroll-snap-stop: normal;
     /* 섹션 상단에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
     /* scroll-margin-top: 50px; */
-}
+} */
 
 /* s1(첫 번째 섹션) */
 .s1{
