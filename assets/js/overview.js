@@ -235,7 +235,7 @@ function createSectionAnimation(sectionClass) {
         }
     )
     .to(`.${sectionClass}_sub`, { color: "#fff" }, "<")
-    .to(`.${sectionClass}_sub`, { top:"65%" });
+    .to(`.${sectionClass}_sub`, { top:"65%" },"<");
 
 }
 
