@@ -23,10 +23,10 @@ let s2Tl = gsap.timeline({
         scrub: true,
     },
 });
-
 s2Tl
     .fromTo(".s2-cont", { top: "100%" }, { top: "50%" })
-    .to(".s2 .s2-inner .s2-cont .s2-list", { gap: "42px", ease: "none" }, 0);
+    .to(".s2 .s2-inner .s2-cont .s2-list", { gap: "42px", ease: "none" }, 0)
+    .to(".s2 .s2-inner .s2-cont .square", { top: "100%", ease: "none" });
 
 
 // section3

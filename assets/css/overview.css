@@ -44,7 +44,6 @@ html {
 .s1 .s1-inner .s1-cont .s1-bg_img img{
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.1);
 }
 .s1 .s1-inner .s1-cont .s1-txt{
     position: absolute;
@@ -82,6 +81,8 @@ html {
     transform: translateY(120px);
 }
 .s1 .s1-inner .s1-cont .s1-txt .txt-bottom .s1_sub{
+    position: relative;
+    top: 100px;
     font-family: '3Light';
     font-size: 2.4rem;
     white-space: nowrap;
@@ -98,9 +99,6 @@ html {
     margin-bottom: 60px;
 }
 
-.s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
-    top: calc(50% + 225px) !important;
-}
 
 .s5 .year-wrap .left{
     height: 150vh;
@@ -185,6 +183,9 @@ html {
     color: #000;
     z-index: 10;
     white-space: nowrap;
+}
+.s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
+    top: calc(50% + 225px)
 }
 .year-common--wrap .year-inner .year-inner--cont .year_sub p:nth-child(1){
     margin-bottom: 10px;
@@ -526,6 +527,7 @@ html {
 .s12 .s12-inner .info-list li .list-cont p:nth-child(2){
     font-family: '4Regular';
     font-size: 2.4rem;
+    white-space: nowrap;
 }
 
 @media (max-width:1080px){
@@ -775,11 +777,11 @@ html {
         height: 200px;
     }
     .year-common--wrap .year-inner .year-inner--cont .year_sub{
-        top: calc(50% + 180px) !important;
+        top: calc(50% + 180px);
     }
 
     .s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
-        top: calc(50% + 160px) !important;
+        top: calc(50% + 160px);
     }
 
     .s10 .s10-inner{

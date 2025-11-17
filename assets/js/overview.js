@@ -81,7 +81,7 @@ setTimeout(() => {
         .to(".txt-top", {
             top: 0,
             y: 0,
-            duration: 1,
+            duration: 2,
             ease: "power2.out",
         })
         .to(".s1 .s1-txt .txt-top span", {
@@ -90,7 +90,7 @@ setTimeout(() => {
             duration: 1,
             ease: "power2.out",
             stagger: 0.1,
-        });
+        })
 }, 1000);
 
 setTimeout(() => {
@@ -144,7 +144,13 @@ function initClipPathAnim() {
             duration: 1,
             ease: "power2.out",
             stagger: 0.1,
-        }, "<");  
+        }, "<")  
+        .to(".s1_sub",{
+            top: 0,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+        },"<")
 }
 
 // 초기 실행
@@ -228,7 +234,9 @@ function createSectionAnimation(sectionClass) {
             maxWidth: "100%",
         }
     )
-    .to(`.${sectionClass}_sub`, { color: "#fff" }, "<");
+    .to(`.${sectionClass}_sub`, { color: "#fff" }, "<")
+    .to(`.${sectionClass}_sub`, { top:"65%" });
+
 }
 
 // 적용할 섹션 리스트

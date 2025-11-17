@@ -8,11 +8,11 @@ const offset = window.innerHeight * 0.7; // .s1의 높이(70vh) → px로 변환
 gsap.fromTo(".s2-bg img",
     { y: 0 },
     {
-        y: -150,
+        y: -200,
         scrollTrigger: {
             trigger: ".s2",
             start: `top-=${offset} top`,
-            end: "top 70vh",
+            end: "top top",
 			scrub: true,
         }
     }
@@ -27,8 +27,8 @@ gsap.to(s2Chars, {
 	stagger: 1,
 	scrollTrigger: {
 		trigger: ".s2",
-		start: "top top",
-		end: "bottom bottom",
+		start: "10% top",
+		end: "90% bottom",
 		scrub: true,
 	}
 });
@@ -45,7 +45,8 @@ let s3Tl = gsap.timeline({
 
 s3Tl
     .fromTo(".s3-cont", { top: "100%" }, { top: "50%" })
-    .to(".s3 .s3-inner .s3-cont .s3-list", { gap: "42px", ease: "none" }, 0);
+    .to(".s3 .s3-inner .s3-cont .s3-list", { gap: "42px", ease: "none" }, 0)
+    .to(".s3 .s3-inner .s3-cont .square", { top: "100%", ease: "none" });
 
 // section4
 ScrollTrigger.create({
@@ -54,80 +55,125 @@ ScrollTrigger.create({
     end: "bottom bottom",
     scrub: true,
     onUpdate: function (self) {
-        var p = self.progress;
-        var items = document.querySelectorAll(".s4-list .list-cont");
-        var len = items.length;
+    var p = self.progress;
+    var items = document.querySelectorAll(".s4-list .list-cont");
+    var len = items.length;
 
-        var section = 1 / len;
-
-        items.forEach((item, i) => {
-            if (p >= section * i && p < section * (i + 1)) {
-                item.classList.add("on");
-            } else {
-                item.classList.remove("on");
-            }
-        });
+    if (p === 0) {
+        items.forEach(item => item.classList.remove("on"));
+        return;
     }
+
+    var section = 1 / len;
+
+    items.forEach((item, i) => {
+        if (p >= section * i && p < section * (i + 1)) {
+            item.classList.add("on");
+        } else {
+            item.classList.remove("on");
+        }
+    });
+}
+
 });
 gsap.fromTo(
-    ".s4",
+    ".s4-clippath",
     { clipPath: "inset(100% 0 0 0)" }, 
     { 
         clipPath: "inset(0% 0 0 0)",  
         scrollTrigger: {
-            trigger: ".s4",
-            start: "30% bottom",   
-            end: "bottom 40%",     
+            trigger: ".s4-clippath",
+            start: "80% bottom",   
+            end: "bottom top",     
             scrub: true,
-        }
+        
+		},
     }
 );
 
 // section5
-const listImages = document.querySelectorAll('.s5 .list-img');
+// const s5ListItems = document.querySelectorAll('.s5 .s5-list li');
+// const s5Images = document.querySelectorAll('.s5 .s5-list .list-img img');
 
-listImages.forEach(img => {
-    img.addEventListener('mouseenter', () => {
-        listImages.forEach(image => {
-            image.style.height = '500px';
-            image.style.aspectRatio = 'unset';
-        });
-    });
+// s5ListItems.forEach(item => {
+//     item.addEventListener('mouseenter', () => {
+//         s5Images.forEach(img => {
+//             img.style.width = '100%';
+//             img.style.height = '100%';
+//         });
+//     });
 
-    img.addEventListener('mouseleave', () => {
-        listImages.forEach(image => {
-            image.style.height = 'unset';
-            image.style.aspectRatio = '1 / 1';
-        });
-    });
-});
+//     item.addEventListener('mouseleave', () => {
+//         s5Images.forEach(img => {
+//             img.style.width = '';
+//             img.style.height = '';
+//         });
+//     });
+// });
 
 // section7
-const slideTl = gsap.to(".s7-list", {
-	x: "-10%",
-	duration: 5,
-	ease: "none",
-	repeat: -1,
-});
-document.querySelectorAll(".s7 .list-img").forEach((imgWrap) => {
-	const onImg = imgWrap.querySelector(".on");
-	const offImg = imgWrap.querySelector(".off");
+const s7List = document.querySelector(".s7-list");
 
-	imgWrap.addEventListener("mouseenter", () => {
-		// 슬라이드 전체 멈춤
-		slideTl.pause();
+if (s7List) {
+	const imageCount = 24;
+	const loopCount = 10; // 콘텐츠를 두 번 이상 복제해 끊김 없는 루프 구성
+	const fragment = document.createDocumentFragment();
 
-		// 개별 이미지 전환
-		gsap.to(onImg, { opacity: 1, duration: 0.3, ease: "power2.out" });
-		gsap.to(offImg, { opacity: 0, duration: 0.3, ease: "power2.out" });
+	const createItem = (index) => {
+		const li = document.createElement("li");
+		const imgWrap = document.createElement("div");
+		imgWrap.className = "list-img";
+
+		const offImg = document.createElement("img");
+		offImg.src = `../images/solution-intro/s7_img${index}-off.png`;
+		offImg.alt = `솔루션 이미지 ${index} 기본`;
+		offImg.className = "off";
+
+		const onImg = document.createElement("img");
+		onImg.src = `../images/solution-intro/s7_img${index}-on.png`;
+		onImg.alt = `솔루션 이미지 ${index} 활성`;
+		onImg.className = "on";
+
+		imgWrap.appendChild(offImg);
+		imgWrap.appendChild(onImg);
+		li.appendChild(imgWrap);
+
+		return li;
+	};
+
+	s7List.innerHTML = "";
+
+	for (let loop = 0; loop < loopCount; loop += 1) {
+		for (let i = 1; i <= imageCount; i += 1) {
+			fragment.appendChild(createItem(i));
+		}
+	}
+
+	s7List.appendChild(fragment);
+	const speed = 150; // 1초에 150px 이동 (숫자 키우면 더 빨라짐)
+	const totalWidth = s7List.scrollWidth;
+
+	const slideTl = gsap.to(".s7-list", {
+		xPercent: -totalWidth,       
+		duration: 120,          
+		ease: "none",          
+		repeat: -1,   
 	});
 
-	imgWrap.addEventListener("mouseleave", () => {
-		// 슬라이드 재시작
-		slideTl.play();
+	s7List.querySelectorAll(".list-img").forEach((imgWrap) => {
+		const onImg = imgWrap.querySelector(".on");
+		const offImg = imgWrap.querySelector(".off");
 
-		// 개별 이미지 원복
-		gsap.to(onImg, { opacity: 0, duration: 0.3, ease: "power2.out" });
-		gsap.to(offImg, { opacity: 1, duration: 0.3, ease: "power2.out" });
+		imgWrap.addEventListener("mouseenter", () => {
+			slideTl.pause();
+			gsap.to(onImg, { opacity: 1, duration: 0.3, ease: "power2.out" });
+			gsap.to(offImg, { opacity: 0, duration: 0.3, ease: "power2.out" });
+		});
+
+		imgWrap.addEventListener("mouseleave", () => {
+			slideTl.play();
+			gsap.to(onImg, { opacity: 0, duration: 0.3, ease: "power2.out" });
+			gsap.to(offImg, { opacity: 1, duration: 0.3, ease: "power2.out" });
+		});
 	});
-});
+}

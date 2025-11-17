@@ -1,3 +1,13 @@
+html {
+    scroll-snap-type: y proximity;
+}
+
+.s5 {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scroll-margin-top: -300px;
+}
+
 /* s1(첫 번째 섹션) */
 .s1{
     height: 400vh;
@@ -76,6 +86,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    height: 678px;
 }
 .s2 .s2-inner .s2-cont .s2-title{
     display: flex;
@@ -97,7 +108,7 @@
 .s2 .s2-inner .s2-cont .s2-list{
     display: flex;
     flex-direction: column;
-    gap: 93px;
+    gap: 300px;
     width: 100%;
 }
 .s2 .s2-inner .s2-cont .s2-list li{
@@ -139,7 +150,7 @@
     align-items: center;
     gap: 12px;
     position: absolute;
-    top: 100%;
+    top: 200%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 56px;
@@ -592,7 +603,9 @@
     .s1 .s1-inner .s1-bg h1, .s1 .s1-inner .s1-title{
         font-size: 6rem;
     }
-
+    .s2 .s2-inner .s2-cont{
+        height: 570px;
+    }
     .s2 .s2-inner .s2-cont .s2-list .list-cont{
         width: 500px;
         height: 50px;
@@ -717,6 +730,9 @@
         width:12px;
     }
 
+    .s2 .s2-inner .s2-cont{
+        gap: 578px;
+    }
     .s2 .s2-inner .s2-cont .s2-title h2{
         font-size: 3.2rem;
     }
@@ -828,6 +844,7 @@
     }
     .s2 .s2-inner .s2-cont{
         gap: 100px;
+        height: 536px;
     }
     .s2 .s2-inner .s2-cont .s2-list .list-cont p{
         font-size: 1.4rem;

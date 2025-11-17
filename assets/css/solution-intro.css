@@ -1,3 +1,12 @@
+html {
+    scroll-snap-type: y proximity;
+}
+
+.s5 {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
 .s1{
     position: relative;
     z-index: 2;
@@ -70,6 +79,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    height: 678px;
 }
 .s3 .s3-inner .s3-cont .s3-title{
     display: flex;
@@ -90,7 +100,7 @@
 .s3 .s3-inner .s3-cont .s3-list{
     display: flex;
     flex-direction: column;
-    gap: 110px;
+    gap: 300px;
     width: 100%;
 }
 .s3 .s3-inner .s3-cont .s3-list li{
@@ -121,7 +131,7 @@
     align-items: center;
     gap: 12px;
     position: absolute;
-    top: 100%;
+    top: 200%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 56px;
@@ -144,9 +154,14 @@
 .s4{
     position: relative;
     z-index: 1;
-    height: 400vh;
+    height: 500vh;
+    margin-top: -200vh;
+}
+
+.s4 .s4-inner .s4-clippath{
+    height: 100%;
     background: #000;
-    margin-top: -300vh;
+    clip-path: inset(100% 0% 0% 0%);
 }
 .s4 .s4-inner{
 }
@@ -279,41 +294,56 @@
     gap: 20px;
 }
 .s5 .s5-inner .s5-cont .s5-list li{
-    width: 33.3333%;
-    /* transition: width .4s cubic-bezier(.33, 1, .68, 1); */
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    position: relative;
+    transition: width cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    width: calc((1520px - 40px) / 3);
+    outline: none;
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
-    width: 70%;
+    width: calc(((1520px - 40px) / 3) * 1.8);
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover img{
+
+}
+/* .s5 .s5-inner .s5-cont .s5-list li:hover img{
     left: 0 !important;
     transition: all .4s ease;
-}
-.s5 .s5-inner .s5-cont .s5-list .list-cont{
-    
+} */
+.s5 .s5-inner .s5-cont .s5-list .list-cont a{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
-    position: relative;
-    margin-bottom: 24px;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    height: unset;
     transition: none;
+    overflow: hidden;
+    padding-top: calc(((1520px - 40px) / 3) * 1);
+    position: relative;
+    width: 100%;
 }
-.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover {
+/* .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover {
     height: 500px;
     aspect-ratio: unset;
     transition: none; 
-}
-.s5 .s5-inner .s5-cont .s5-list li:nth-child(2) img{
-    transition: all .4s ease;
-}
+} */
+
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
     position: absolute;
-    max-width: 760px;
-    height: 100%;
+    bottom: 0;
     top: 0;
-    left: -25%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+}
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img.before{
+
+}
+.s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img.after{
+
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt{
     display: flex;
@@ -381,11 +411,11 @@
 .s7 .s7-inner .s7-list{
     display: flex;
     align-items: center;
-    gap: 40px;
     padding: 55px 0;
 }
 .s7 .s7-inner .s7-list li{
     flex: 0 0 auto;
+    margin-right: 40px;
 }
 .s7 .s7-inner .s7-list li .list-img{
     position: relative;
@@ -450,6 +480,9 @@
         font-size: 5rem;
     }
 
+    .s3 .s3-inner .s3-cont{
+        height: 600px;
+    }
     .s3 .s3-inner .s3-cont .s3-title h2{
         font-size: 4rem;
     }
@@ -526,6 +559,9 @@
         font-size: 4rem;
     }
 
+    .s3 .s3-inner .s3-cont{
+        height: 548px;
+    }
     .s3 .s3-inner .s3-cont .s3-title h2{
         font-size: 3.2rem;
     }
@@ -578,7 +614,7 @@
     }
 
     .s5{
-        height: 220vh;  
+        height: 300vh;  
     }
     .s5 .s5-inner .s5-cont .s5-title h2{
         font-size: 3rem;
@@ -603,6 +639,14 @@
         height: unset;
         aspect-ratio: 9/6;
         margin-bottom: 10px;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
+        aspect-ratio: 9/6 !important;
+        height: unset !important;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover{
+        aspect-ratio: 9/6 !important;
+        height: unset !important;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
         position: unset;
@@ -677,6 +721,7 @@
     }
     .s3 .s3-inner .s3-cont{
         gap: 100px;
+        height: 506px;
     }
     .s3 .s3-inner .s3-cont .s3-list .list-cont{
         width: 300px;
@@ -709,7 +754,7 @@
     }
 
     .s5{
-        height: 140vh;
+        height: 200vh;
     }
     .s5 .s5-inner{
         padding: 0;

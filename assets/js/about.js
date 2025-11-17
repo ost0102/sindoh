@@ -26,7 +26,8 @@ let s2Tl = gsap.timeline({
 
 s2Tl
     .fromTo(".s2-cont", { top: "100%" }, { top: "50%" })
-    .to(".s2 .s2-inner .s2-cont .s2-list", { gap: "42px", ease: "none" }, 0);
+    .to(".s2 .s2-inner .s2-cont .s2-list", { gap: "42px", ease: "none" }, 0)
+    .to(".s2 .s2-inner .s2-cont .square", { top: "100%", ease: "none" });
 
 
 // section3
@@ -50,7 +51,7 @@ gsap.fromTo(
 ScrollTrigger.create({
     trigger: ".s3-inner",
     start: "100% top",
-    end: "400% top",
+    end: "750% top",
     scrub: true,
     onUpdate: function(self){
         var $el = $('.rolling-txt');
@@ -146,7 +147,7 @@ window.addEventListener('resize', function() {
 // s4 섹션에 진입할 때 자동 슬라이드 시작
 ScrollTrigger.create({
 	trigger: ".s4",
-	start: "top 80%",
+	start: "30% 80%",
 	onEnter: function() {
 		restartAutoSlide();
 	},
