@@ -1,10 +1,14 @@
-const lenis = new Lenis({
-  duration: 3,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-});
+document.addEventListener("DOMContentLoaded", () => {
+  // Lenis 초기화
+  const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+  });
 
-function raf(time) {
-  lenis.raf(time);
-  ScrollTrigger.update();  // 애니메이션이 스크롤 상태를 업데이트
-  requestAnimationFrame(raf);  // 계속해서 실행
-}
+  // 애니메이션 프레임 설정
+  function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+});

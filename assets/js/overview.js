@@ -17,7 +17,7 @@ if (!window.lenis) {
     return new Promise((resolve) => {
       new TypeIt("#S1Tl", {
         strings: "1960년, 대한민국에서<br>시작된 사무혁신",
-        speed: 100,
+        speed: 1,
         cursor: true,
         cursorChar: "|",
         lifeLike: true,
@@ -185,7 +185,7 @@ function createSectionAnimation(sectionClass) {
             scrollTrigger: {
                 trigger: `.${sectionClass}`,
                 start: "top top",
-                end: "160% bottom",
+                end: "140% bottom",
                 scrub: true,
                 ease: "power2.out",
             }

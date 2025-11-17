@@ -112,7 +112,7 @@ html {
 
 /* 연혁 리스트 나오기 전 위 섹션 이미지 공통 css */
 .year-common--wrap{
-    height: 600vh;
+    height: 500vh;
     background: #fff;
 }
 .year-common--wrap .year-inner{}

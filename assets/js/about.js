@@ -163,21 +163,3 @@ ScrollTrigger.create({
 		restartAutoSlide();
 	}
 });
-
-const listImages = document.querySelectorAll('.list-img');
-
-listImages.forEach(img => {
-    img.addEventListener('mouseenter', () => {
-        listImages.forEach(image => {
-            image.style.height = '500px';
-            image.style.aspectRatio = 'unset';
-        });
-    });
-
-    img.addEventListener('mouseleave', () => {
-        listImages.forEach(image => {
-            image.style.height = 'unset';
-            image.style.aspectRatio = '1 / 1';
-        });
-    });
-});
