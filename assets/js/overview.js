@@ -1,57 +1,54 @@
-if (!window.lenis) {
-    window.lenis = new Lenis({ duration: 1.2, smooth: true });
+function waitForLenis(callback) {
+    if (window.lenis) {
+      callback(window.lenis);
+    } else {
+      // lenis가 아직 없으면 조금 뒤에 다시 확인
+      setTimeout(() => waitForLenis(callback), 50);
+    }
   }
-  lenis.stop(); // 초기 정지
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  document.body.style.overflow = "hidden";
-  document.documentElement.style.overflow = "hidden";
-
-  // 3️⃣ TypeIt 타이핑 애니메이션
-  function typeText() {
-    return new Promise((resolve) => {
-      new TypeIt("#S1Tl", {
-        strings: "1960년, 대한민국에서<br>시작된 사무혁신",
-        speed: 100,
-        cursor: true,
-        cursorChar: "|",
-        lifeLike: true,
-        afterComplete: () => {
-          // 커서 숨기기
-          const cursor = document.querySelector("#S1Tl .ti-cursor");
-          if (cursor) cursor.style.display = "none";
-
-          // body/html overflow 복원
-          document.body.style.overflow = "";
-          document.documentElement.style.overflow = "";
-
-          // Lenis 시작
-          lenis.start();
-          resolve();
+  
+// document.body.style.overflow = "hidden";
+// document.documentElement.style.overflow = "hidden";
+// 3️⃣ TypeIt 타이핑 애니메이션
+waitForLenis((lenis) => {
+    lenis.stop(); 
+    function typeText() {
+        return new Promise((resolve) => {
+            new TypeIt("#S1Tl", {
+            strings: "1960년, 대한민국에서<br>시작된 사무혁신",
+            speed: 100,
+            cursor: true,
+            cursorChar: "|",
+            lifeLike: true,
+            afterComplete: () => {
+                // 커서 숨기기
+                const cursor = document.querySelector("#S1Tl .ti-cursor");
+                if (cursor) cursor.style.display = "none";
+                // body/html overflow 복원
+                // document.body.style.overflow = "";
+                // document.documentElement.style.overflow = "";
+                // Lenis 시작
+                lenis.start();
+                resolve();
+            }
+            }).go();
+        });
+    }
+        
+    // 3️⃣ GSAP timeline 통합
+    gsap.registerPlugin(ScrollTrigger);
+    const tl = gsap.timeline();
+    tl.add(() => typeText()) // 타이핑 끝날 때까지 대기
+        .to(".s1 .s1-inner .s1-cont .s1-bg_img", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            onComplete: () => {
+            // 타이핑 + 배경 애니메이션 끝나면 Lenis 시작
+            lenis.start();
         }
-      }).go();
     });
-  }
-
-  // 3️⃣ GSAP timeline 통합
-  gsap.registerPlugin(ScrollTrigger);
-  const tl = gsap.timeline();
-
-  tl.add(() => typeText()) // 타이핑 끝날 때까지 대기
-    .to(".s1 .s1-inner .s1-cont .s1-bg_img", {
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-      onComplete: () => {
-        // 타이핑 + 배경 애니메이션 끝나면 Lenis 시작
-        lenis.start();
-      }
-    });
+});
 
 
 let s1Split = new SplitType(".s1_sub", { types: "lines, words, chars" });

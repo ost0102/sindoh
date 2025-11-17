@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Lenis 초기화
-  const lenis = new Lenis({
+  // 전역(window)에 붙여서 어디서든 접근 가능하게
+  window.lenis = new Lenis({
       duration: 1.2,
       smooth: true,
   });
 
-  // 애니메이션 프레임 설정
   function raf(time) {
-      lenis.raf(time);
+      window.lenis.raf(time);
       requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
