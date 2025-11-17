@@ -17,7 +17,7 @@ if (!window.lenis) {
     return new Promise((resolve) => {
       new TypeIt("#S1Tl", {
         strings: "1960년, 대한민국에서<br>시작된 사무혁신",
-        speed: 1,
+        speed: 100,
         cursor: true,
         cursorChar: "|",
         lifeLike: true,
