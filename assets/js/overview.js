@@ -1,305 +1,269 @@
-function waitForLenis(callback) {
-    if (window.lenis) {
-      callback(window.lenis);
-    } else {
-      // lenis가 아직 없으면 조금 뒤에 다시 확인
-      setTimeout(() => waitForLenis(callback), 50);
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* -----------------------------------------------------------
+        0. 전역 변수
+    ----------------------------------------------------------- */
+    const sections = ["s2", "s4", "s6", "s8"];
+
+
+    /* -----------------------------------------------------------
+        1. LENIS + TypeIt 초기 실행
+    ----------------------------------------------------------- */
+    function waitForLenis(callback) {
+        if (window.lenis) {
+            callback(window.lenis);
+        } else {
+            setTimeout(() => waitForLenis(callback), 50);
+        }
     }
-  }
-  
-// document.body.style.overflow = "hidden";
-// document.documentElement.style.overflow = "hidden";
-// 3️⃣ TypeIt 타이핑 애니메이션
-waitForLenis((lenis) => {
-    lenis.stop(); 
-    function typeText() {
-        return new Promise((resolve) => {
-            new TypeIt("#S1Tl", {
-            strings: "1960년, 대한민국에서<br>시작된 사무혁신",
-            speed: 100,
-            cursor: true,
-            cursorChar: "|",
-            lifeLike: true,
-            afterComplete: () => {
-                // 커서 숨기기
-                const cursor = document.querySelector("#S1Tl .ti-cursor");
-                if (cursor) cursor.style.display = "none";
-                // body/html overflow 복원
-                // document.body.style.overflow = "";
-                // document.documentElement.style.overflow = "";
-                // Lenis 시작
-                lenis.start();
-                resolve();
-            }
-            }).go();
-        });
-    }
-        
-    // 3️⃣ GSAP timeline 통합
-    gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline();
-    tl.add(() => typeText()) // 타이핑 끝날 때까지 대기
+
+    waitForLenis((lenis) => {
+
+        lenis.stop(); // 처음엔 스크롤 막기
+
+        function typeText() {
+            return new Promise((resolve) => {
+                new TypeIt("#S1Tl", {
+                    strings: "1960년, 대한민국에서<br>시작된 사무혁신",
+                    speed: 100,
+                    cursor: true,
+                    cursorChar: "|",
+                    lifeLike: true,
+                    afterComplete: () => {
+                        const cursor = document.querySelector("#S1Tl .ti-cursor");
+                        setTimeout(() => {
+                            if (cursor) cursor.style.display = "none";
+                            lenis.start();
+                            resolve();
+                        }, 1000);
+                    }
+                }, 2000).go();
+            });
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline();
+        tl.add(() => typeText())
         .to(".s1 .s1-inner .s1-cont .s1-bg_img", {
             opacity: 1,
             duration: 1,
-            ease: "power2.out",
-            onComplete: () => {
-            // 타이핑 + 배경 애니메이션 끝나면 Lenis 시작
-            lenis.start();
-        }
-    });
-});
-
-
-let s1Split = new SplitType(".s1_sub", { types: "lines, words, chars" });
-let s1Lines = s1Split.lines;
-let s1Chars = s1Split.chars;
-
-
-gsap.set(s1Lines, { opacity: 0 });
-
-setTimeout(() => {
-    const timeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".s1",
-            start: "2% top",
-            end: "50% bottom",
-            scrub: true,
-        }
+            ease: "power2.out"
+        });
     });
 
-    timeline
-        .to(s1Lines, {
-            opacity: 1,
-            duration: 2.5,
-            stagger: 0.08,
-            ease: "power3.out",
-        })
-        .to(".txt-top", {
-            top: 0,
-            y: 0,
-            duration: 2,
-            ease: "power2.out",
-        })
-        .to(".s1 .s1-txt .txt-top span", {
-            opacity: 1,
-            top: 0,
-            duration: 1,
-            ease: "power2.out",
-            stagger: 0.1,
-        })
-}, 1000);
 
-setTimeout(() => {
-    gsap.to(s1Chars, {
-        color: "#fff",
-        stagger: 1,
-        scrollTrigger: {
-            trigger: ".s1",
-            start: "50% bottom",
-            end: "90% bottom",
-            scrub: true,
-        }
-    });
-}, 1000);
+    /* -----------------------------------------------------------
+        2. SplitType 초기화
+    ----------------------------------------------------------- */
+    let s1Split = new SplitType(".s1_sub", { types: "lines, words, chars" });
+    let s1Lines = s1Split.lines;
+    let s1Chars = s1Split.chars;
 
-function initClipPathAnim() {
-    ScrollTrigger.getAll().forEach(st => st.kill());
-
-    let startClipPath = window.innerWidth <= 768
-        ? "inset(25% 35% 25% 35%)"
-        : "inset(25% 43% 25% 43%)";
-
-    const timeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".s1",
-            start: "2% top",
-            end: "50% bottom",
-            scrub: true,
-        }
-    });
-
-    // 이미지 clipPath 애니메이션과 텍스트 애니메이션을 동시에 실행
-    timeline
-        .fromTo(
-            ".s1 .s1-inner .s1-cont .s1-bg_img",
-            { clipPath: startClipPath },
-            { 
-                clipPath: "inset(0% 0% 0% 0%)",
-                duration: 2.5,
-                ease: "power3.out",
-            })
-        .to(".txt-top", {
-            top: 0,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-        }, "<")  
-        .to(".s1 .s1-txt .txt-top span", {
-            opacity: 1,
-            top: 0,
-            duration: 1,
-            ease: "power2.out",
-            stagger: 0.1,
-        }, "<")  
-        .to(".s1_sub",{
-            top: 0,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-        },"<")
-}
-
-// 초기 실행
-initClipPathAnim();
-
-// 윈도우 크기 바뀔 때 다시 실행
-window.addEventListener("resize", initClipPathAnim);
+    gsap.set(s1Lines, { opacity: 0 });
 
 
-// 공통 섹션 애니메이션 생성 함수
-function createSectionAnimation(sectionClass) {
-    // 첫 번째 타임라인 (이미지 레이어 이동)
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: `.${sectionClass}`,
-            start: "top top",
-            end: sectionClass === "s2" ? "40% bottom" : "30% bottom",
-            scrub: true,
-            ease: "power2.out",
-        }
-    })
-    .fromTo(
-        `.${sectionClass}-img--layer`,
-        { top: sectionClass === "s2" ? "80%" : "100%" },
-        { top: "50%" }
-    );
+    /* -----------------------------------------------------------
+        3. S1 ClipPath + 텍스트 애니메이션
+    ----------------------------------------------------------- */
+    function initClipPathAnim() {
 
-    // s2 제목 이동
-    if (sectionClass === "s2") {
-        gsap.to(`.${sectionClass}-title`, {
-            top: "-100%",
+        let startClipPath = window.innerWidth <= 768
+            ? "inset(25% 35% 25% 35%)"
+            : "inset(25% 43% 25% 43%)";
+
+        const timeline = gsap.timeline({
             scrollTrigger: {
-                trigger: `.${sectionClass}`,
-                start: "top top",
-                end: "140% bottom",
+                trigger: ".s1",
+                start: "2% top",
+                end: "50% bottom",
                 scrub: true,
+            }
+        });
+
+        timeline
+            .fromTo(".s1 .s1-inner .s1-cont .s1-bg_img",
+                { clipPath: startClipPath },
+                { clipPath: "inset(0% 0% 0% 0%)", duration: 2.5, ease: "power3.out" }
+            )
+            .to(".txt-top", {
+                top: 0,
+                y: 0,
+                duration: 1,
+                ease: "power2.out"
+            }, "<")
+            .to(".s1 .s1-txt .txt-top span", {
+                opacity: 1,
+                top: 0,
+                duration: 1,
                 ease: "power2.out",
+                stagger: 0.1,
+            }, "<")
+            .to(".s1_sub", {
+                top: 0,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+            }, "<");
+    }
+
+
+    /* -----------------------------------------------------------
+        4. S1 텍스트(line, char) 애니메이션
+    ----------------------------------------------------------- */
+    function initS1Animations() {
+
+        const timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".s1",
+                start: "2% top",
+                end: "50% bottom",
+                scrub: true,
+            }
+        });
+
+        timeline
+            .to(s1Lines, {
+                opacity: 1,
+                duration: 2.5,
+                stagger: 0.08,
+                ease: "power3.out"
+            })
+            .to(".s1 .s1-txt .txt-top span", {
+                opacity: 1,
+                top: 0,
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.1
+            });
+
+        gsap.to(s1Chars, {
+            color: "#fff",
+            stagger: 1,
+            scrollTrigger: {
+                trigger: ".s1",
+                start: "50% bottom",
+                end: "90% bottom",
+                scrub: true,
             }
         });
     }
 
-    // 텍스트 clipPath
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: `.${sectionClass}`,
-            start: sectionClass === "s2" ? "40% bottom" : "30% bottom",
-            end: "50% bottom",
-            scrub: true,
-            ease: "power2.out",
-        }
-    })
-    .fromTo(
-        [
-            `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}-img--wrap .img-cont .img-inner p`,
-            `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}_sub p`
-        ],
-        { clipPath: "inset(0% 100% 0% 0%)" },
-        { clipPath: "inset(0% 0% 0% 0%)" }
-    );
 
-    // 이미지 확장 + 텍스트 색상 변경
-    gsap.set(
-        `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}-img--wrap .img-cont`,
-        { maxWidth: "715px", width: "100%" }
-    );
+    /* -----------------------------------------------------------
+        5. 공통 섹션 애니메이션 생성기 (s2, s4, s6, s8)
+    ----------------------------------------------------------- */
+    function createSectionAnimation(sectionClass) {
 
-    gsap.timeline({
-        scrollTrigger: {
-            trigger: `.${sectionClass}`,
-            start: "50% bottom",
-            end: "90% bottom",
-            scrub: true,
-            ease: "power2.out",
-        }
-    })
-    .to(
-        `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}-img--wrap .img-cont`,
-        {
-            width: "100%",
-            height: "100%",
-            maxWidth: "100%",
-        }
-    )
-    .to(`.${sectionClass}_sub`, { color: "#fff" }, "<")
-    .to(`.${sectionClass}_sub`, { top:"65%" },"<");
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: `.${sectionClass}`,
+                start: "top top",
+                end: "80% 70%",
+                scrub: true,
+                ease: "power2.out",
+                invalidateOnRefresh: true,
+            }
+        })
+        .fromTo(
+            `.${sectionClass}-year-inner--cont`,
+            { top: "100%" },
+            { top: "50%" }
+        )
+        .to(".year-h2--title", { top: "-100%", ease: "none" })
+        .fromTo(
+            [
+                `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}-img--wrap .img-cont .img-inner p`,
+                `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}_sub p`
+            ],
+            { clipPath: "inset(0% 100% 0% 0%)" },
+            { clipPath: "inset(0% 0% 0% 0%)" }
+        )
+        .fromTo(
+            `.${sectionClass} .img-cont img`,
+            { "max-width": "715px", height: "30vh" },
+            { "max-width": "100%", height: "100vh", ease: "none" },
+            ">0.3"
+        )
+        .to(`.${sectionClass}_sub`, { color: "#fff" }, "<")
+        .to(`.${sectionClass}_sub`, { bottom: "25%" }, "<");
+    }
 
-}
 
-// 적용할 섹션 리스트
-const sections = ["s2", "s4", "s6", "s8"];
-
-// 초기 실행
-sections.forEach(createSectionAnimation);
-
-// 리사이즈 시 재적용
-window.addEventListener("resize", () => {
-    clearTimeout(window._resizeTimer);
-    window._resizeTimer = setTimeout(() => {
-        ScrollTrigger.getAll().forEach(st => st.kill());
+    /* -----------------------------------------------------------
+        6. 섹션 전체 초기화 실행
+    ----------------------------------------------------------- */
+    function initSectionAnimations() {
         sections.forEach(createSectionAnimation);
+    }
+
+
+    /* -----------------------------------------------------------
+        7. 전체 애니메이션 초기화
+    ----------------------------------------------------------- */
+    function initAllAnimations() {
+
+        ScrollTrigger.getAll().forEach(st => st.kill());
+
+        initClipPathAnim();
+        initS1Animations();
+        initSectionAnimations();
+
         ScrollTrigger.refresh();
-    }, 500);
-});
+    }
 
 
-$(function(){
-    // 지사 호버 시 월드맵 마커 on 토글    
-    const regions = ["US", "CN", "VN", "HK", "JP"];
-    const $worldMap = $(".s11 .world_map");
+    /* -----------------------------------------------------------
+        8. 초기 실행 + 리사이즈 핸들러
+    ----------------------------------------------------------- */
+    initAllAnimations();
 
-    $(document).on("mouseenter", ".s11 .jisa-cont .jisa", function(){
-        const $jisa = $(this);
-        const region = regions.find(r => $jisa.hasClass(r));
-        if(!region) return;
-        $worldMap.find(".location_icn").removeClass("on");
-        $worldMap.find(".location_icn."+region).addClass("on");
+    window.addEventListener("resize", () => {
+        clearTimeout(window._resizeTimer);
+        window._resizeTimer = setTimeout(() => {
+            initAllAnimations();
+        }, 500);
     });
 
-    $(document).on("mouseleave", ".s11 .jisa-cont .jisa", function(){
-        const $jisa = $(this);
-        const region = regions.find(r => $jisa.hasClass(r));
-        if(!region) return;
-        $worldMap.find(".location_icn."+region).removeClass("on");
+
+    /* -----------------------------------------------------------
+        9. 지사/월드맵 호버 이벤트
+    ----------------------------------------------------------- */
+    $(function () {
+
+        const regions = ["US", "CN", "VN", "HK", "JP"];
+        const $worldMap = $(".s11 .world_map");
+
+        // 지사 hover
+        $(document).on("mouseenter", ".s11 .jisa-cont .jisa", function () {
+            const region = regions.find(r => $(this).hasClass(r));
+            if (!region) return;
+            $worldMap.find(".location_icn").removeClass("on");
+            $worldMap.find(".location_icn." + region).addClass("on");
+        });
+
+        $(document).on("mouseleave", ".s11 .jisa-cont .jisa", function () {
+            const region = regions.find(r => $(this).hasClass(r));
+            if (!region) return;
+            $worldMap.find(".location_icn." + region).removeClass("on");
+        });
+
+        // 월드맵 hover
+        $(document).on("mouseenter", ".s11 .world_map .location_icn", function () {
+            const region = regions.find(r => $(this).hasClass(r));
+            if (!region) return;
+            $(".s11 .world_map .location_icn").removeClass("on");
+            $(this).addClass("on");
+            $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa").removeClass("on");
+            $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa." + region).addClass("on");
+        });
+
+        $(document).on("mouseleave", ".s11 .world_map .location_icn", function () {
+            const region = regions.find(r => $(this).hasClass(r));
+            if (!region) return;
+            $(this).removeClass("on");
+            $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa." + region).removeClass("on");
+        });
     });
 
-    $(document).on("mouseenter", ".s11 .world_map .location_icn", function(){
-        const $marker = $(this);
-        const region = regions.find(r => $marker.hasClass(r));
-        if(!region) return;
-        $(".s11 .world_map .location_icn").removeClass("on");
-        $marker.addClass("on");
-        $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa").removeClass("on");
-        $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa."+region).addClass("on");
-    });
-
-    $(document).on("mouseleave", ".s11 .world_map .location_icn", function(){
-        const $marker = $(this);
-        const region = regions.find(r => $marker.hasClass(r));
-        if(!region) return;
-        $marker.removeClass("on");
-        $(".s11 .sindo-area .sindo_jisa .jisa-cont .jisa."+region).removeClass("on");
-    });
-
-    // 연혁 갯수에 따른 높이 조절
-    // $(".year-wrap").each(function(){
-    //     const $wrap = $(this);
-    //     const itemCount = $wrap.find(".right .year-list--cont > li").length;
-    //     let heightVh = "200vh"; // 기본값
-    //     if(itemCount >= 1 && itemCount <= 3) heightVh = "100vh";
-    //     else if(itemCount >= 4 && itemCount <= 6) heightVh = "150vh";
-    //     else if(itemCount >= 7 && itemCount <= 9) heightVh = "180vh";
-    //     else if(itemCount >= 10) heightVh = "200vh";
-    //     $wrap.find(".left").css("height", heightVh);
-    // });
-});
+}); // ← DOMContentLoaded 끝

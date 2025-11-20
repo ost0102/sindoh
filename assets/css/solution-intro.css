@@ -43,7 +43,7 @@
 }
 .s2 .s2-inner .s2-cont .s2-bg img{
     width: 100%;
-    height: 120%;
+    height: 130%;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -79,7 +79,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
-    height: 678px;
+    height: 792px;
 }
 .s3 .s3-inner .s3-cont .s3-title{
     display: flex;
@@ -96,6 +96,12 @@
     font-size: 3rem;
     font-family: '4Regular';
     color: #616161;
+}
+.s3 .s3-inner .s3-cont .pain-point{
+    display: flex;
+    flex-direction: column;
+    gap: 300px;
+    width: 100%;
 }
 .s3 .s3-inner .s3-cont .s3-list{
     display: flex;
@@ -130,11 +136,6 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    position: absolute;
-    top: 200%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 56px;
 }
 .s3 .s3-inner .s3-cont .square span{
     width: 16px;
@@ -211,19 +212,18 @@
     position: relative;
     padding: 17% 10%;
     transition: all .3s ease;
+    overflow: hidden;
 }
 .s4 .s4-inner .s4-cont .s4-list li .list-cont .list-bg{
     position: absolute;
     top: 0;
     left: 0;
-    width: 0%;
+    width: 100%;
     height: 100%;
     background: #6F36FF;
     z-index: -1;
-    transition: width .3s ease;
-}
-.s4 .s4-inner .s4-cont .s4-list li .list-cont.on .list-bg{
-    width: 100%;
+    transform-origin: left center;
+    transform: scaleX(0);
 }
 .s4 .s4-inner .s4-cont .s4-list li .list-cont .list-img{
     margin-bottom: 53px;
@@ -463,7 +463,7 @@
     }
 
     .s3 .s3-inner .s3-cont{
-        height: 600px;
+        height: 672px;
     }
     .s3 .s3-inner .s3-cont .s3-title h2{
         font-size: 4rem;
@@ -559,7 +559,7 @@
     }
 
     .s3 .s3-inner .s3-cont{
-        height: 548px;
+        height: 620px;
     }
     .s3 .s3-inner .s3-cont .s3-title h2{
         font-size: 3.2rem;
@@ -720,7 +720,7 @@
     }
     .s3 .s3-inner .s3-cont{
         gap: 100px;
-        height: 506px;
+        height: 569px;
     }
     .s3 .s3-inner .s3-cont .s3-list .list-cont{
         width: 300px;

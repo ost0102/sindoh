@@ -77,7 +77,12 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
-    height: 581px;
+    height: 695px;
+}
+.s2 .s2-inner .s2-cont .pain-point{
+    display: flex;
+    flex-direction: column;
+    gap: 300px;
 }
 .s2 .s2-inner .s2-cont .s2-title{
     display: flex;
@@ -125,11 +130,6 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    position: absolute;
-    top: 200%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 56px;
 }
 .s2 .s2-inner .s2-cont .square span{
     width: 16px;
@@ -490,7 +490,7 @@
     }
 
     .s2 .s2-inner .s2-cont{
-        height: 520px;
+        height: 618px;
     }
     .s2 .s2-inner .s2-cont .s2-title h2{
         font-size: 4rem;
@@ -588,7 +588,7 @@
     }
 
     .s2 .s2-inner .s2-cont{
-        height: 430px;
+        height: 532px;
     }
     .s2 .s2-inner .s2-cont .s2-title h2{
         font-size: 3.2rem;
@@ -701,7 +701,7 @@
     }
     .s2 .s2-inner .s2-cont{
         gap: 100px;
-        height: 366px;
+        height: 460px;
     }
     .s2 .s2-inner .s2-cont .s2-list .list-cont p{
         font-size: 1.4rem;

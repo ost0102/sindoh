@@ -86,7 +86,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
-    height: 678px;
+    height: 792px;
 }
 .s2 .s2-inner .s2-cont .s2-title{
     display: flex;
@@ -104,6 +104,12 @@
     font-size: 3rem;
     font-family: '4Regular';
     color: #616161;
+}
+.s2 .s2-inner .s2-cont .pain-point{
+    display: flex;
+    flex-direction: column;
+    gap: 300px;
+    width: 100%;
 }
 .s2 .s2-inner .s2-cont .s2-list{
     display: flex;
@@ -149,11 +155,6 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    position: absolute;
-    top: 200%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 56px;
 }
 .s2 .s2-inner .s2-cont .square span{
     width: 16px;
@@ -204,7 +205,7 @@
 .s4{
     position: relative;
     background: #090909;
-    height: 1000vh;
+    height: 1500vh;
 }
 .s4 .s4-inner{
 
@@ -604,7 +605,7 @@
         font-size: 6rem;
     }
     .s2 .s2-inner .s2-cont{
-        height: 570px;
+        height: 672px;
     }
     .s2 .s2-inner .s2-cont .s2-list .list-cont{
         width: 500px;
@@ -731,7 +732,7 @@
     }
 
     .s2 .s2-inner .s2-cont{
-        gap: 578px;
+        height: 638px;
     }
     .s2 .s2-inner .s2-cont .s2-title h2{
         font-size: 3.2rem;
@@ -770,10 +771,10 @@
         width: 375px;
     }
     .s4 .s4-inner .s4-cont .mobile-cont .mobile-inner .mobile-img.mobile3 img{
-        width: 358px;
+        width: 355px;
     }
     .s4 .s4-inner .s4-cont .mobile-cont .mobile-inner .mobile-img.mobile5 img{
-        width: 166px;
+        width: 164px;
     }
     .s4 .s4-inner .s4-cont .num{
         font-size: 2.6rem;
@@ -844,7 +845,7 @@
     }
     .s2 .s2-inner .s2-cont{
         gap: 100px;
-        height: 536px;
+        height: 629px;
     }
     .s2 .s2-inner .s2-cont .s2-list .list-cont p{
         font-size: 1.4rem;
@@ -894,10 +895,10 @@
 
 @media (max-width:400px){
     .s4 .s4-inner .s4-cont .num {
-        top: 70%;
+        top: 65%;
     }
     .s4 .s4-inner .s4-cont .recipt-txt{
-        top: 75%;
+        top: 70%;
     }
     .s4 .s4-inner .s4-cont .recipt-txt img{
         width: 20px;

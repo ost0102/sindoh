@@ -1,16 +1,5 @@
-/* 스크롤 중 걸림 효과 (CSS Scroll Snap) - 부드러운 버전 */
-html {
-    scroll-snap-type: y proximity;
-    /* 스냅 위치에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
-    /* scroll-padding-top: 100px;  */
-}
-
-/* 걸림 대상 섹션: s3, s5, s7, s9, s11 */
-.s3, .s5, .s7, .s9, .s11 {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-    /* 섹션 상단에 여유 공간 추가 - 아래 주석 풀고 값을 조정하시면서 확인 가능 */
-    /* scroll-margin-top: 50px; */
+.ti-cursor{
+    transform: scale(0.5);
 }
 /* s1(첫 번째 섹션) */
 .s1{
@@ -44,6 +33,7 @@ html {
 .s1 .s1-inner .s1-cont .s1-bg_img img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .s1 .s1-inner .s1-cont .s1-txt{
     position: absolute;
@@ -117,10 +107,20 @@ html {
 }
 .year-common--wrap .year-inner{}
 .year-common--wrap .year-inner .year-inner--cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 auto;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
 }
 .year-common--wrap .year-inner .year-inner--cont .year-h2--title{
     position: absolute;
-    top: calc(80% - 330px);
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: '5medium';
@@ -129,30 +129,30 @@ html {
     white-space: nowrap;
 }
 .year-common--wrap .year-inner .year-inner--cont .year-img--layer{
-    position: absolute;
+    /* position: absolute;
     top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    height: 100%;
+    height: 100%; */
     will-change: transform;
 }
 .year-common--wrap .year-inner .year-inner--cont .year-img--wrap{
     /* margin: 0 0 10px 0; */
-    height: 100%;
+    /* height: 100%; */
 }
 .year-common--wrap .year-inner .year-inner--cont .year-img--wrap .year-img--cont{
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 715px;
-    height: 300px;
+    transform: translate(-50%, -50%); */
+    position: relative;
     margin: 0 auto;
 }
 .year-common--wrap .year-inner .year-inner--cont .year-img--wrap .year-img--cont img{
     width: 100%;
     height: 100%;
+    margin: 0 auto;
     object-fit: cover;
 }
 .year-common--wrap .year-inner .year-inner--cont .year-img--wrap .year-img--cont .year-img--inner{
@@ -171,11 +171,15 @@ html {
     color: #fff;
     white-space: nowrap;
 }
+.s2.year-common--wrap .year-inner .year-inner--cont .year_sub{
+    transform: translate(-50%, -50%);
+}
 .year-common--wrap .year-inner .year-inner--cont .year_sub{
     position: absolute;
-    top: calc(50% + 211px);
+    bottom: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    /* height: max-content; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -184,9 +188,9 @@ html {
     z-index: 10;
     white-space: nowrap;
 }
-.s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
+/* .s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
     top: calc(50% + 225px)
-}
+} */
 .year-common--wrap .year-inner .year-inner--cont .year_sub p:nth-child(1){
     margin-bottom: 10px;
     font-family: '7bold';
@@ -667,6 +671,14 @@ html {
     .year-wrap .left .left-inner .left-txt{
         gap: 40px;
     }
+    .s2.year-common--wrap .year-inner .year-inner--cont .year_sub{
+        /* bottom: 20%; */
+    }
+    .s4.year-common--wrap .year-inner .year-inner--cont .year_sub,
+    .s6.year-common--wrap .year-inner .year-inner--cont .year_sub,
+    .s8.year-common--wrap .year-inner .year-inner--cont .year_sub{
+        /* bottom: 0; */
+    }
 
     .s10 .s10-inner .s10-title p{
         font-size: 4vw;
@@ -739,10 +751,10 @@ html {
 
 @media (max-width:480px){
     .s1 .s1-inner .s1-cont .s1-txt .txt-bottom .s1_sub{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
     .year-common--wrap .year-inner .year-inner--cont .year-h2--title{
-        top: calc(80% - 220px);
+        /* top: calc(80% - 220px); */
     }
     .year-common--wrap .year-inner .year-inner--cont .year-img--wrap .year-img--cont .year-img--inner p{
         font-size: 5rem;
@@ -774,14 +786,14 @@ html {
         gap: 15px;
     }
     .year-common--wrap .year-inner .year-inner--cont .year-img--wrap .year-img--cont{
-        height: 200px;
+        /* height: 200px; */
     }
     .year-common--wrap .year-inner .year-inner--cont .year_sub{
-        top: calc(50% + 180px);
+        /* top: calc(50% + 180px); */
     }
 
     .s4 .year_sub, .s6 .year_sub, .s8 .year_sub{
-        top: calc(50% + 160px);
+        /* top: calc(50% + 160px); */
     }
 
     .s10 .s10-inner{
