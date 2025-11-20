@@ -164,4 +164,21 @@ document.addEventListener("DOMContentLoaded", function () {
         onEnterBack: restartAutoSlide
     });
 
+
+    const listItems = document.querySelectorAll(".s5-list li");
+    const allImages = document.querySelectorAll(".s5-list .list-img img");
+
+    listItems.forEach((li) => {
+        li.addEventListener("mouseenter", () => {
+            allImages.forEach((img) => {
+                img.style.height = "100%";
+            });
+        });
+
+        li.addEventListener("mouseleave", () => {
+            allImages.forEach((img) => {
+                img.style.height = "auto";
+            });
+        });
+    });
 });

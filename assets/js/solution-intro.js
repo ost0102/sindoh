@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const slideTl = gsap.to(".s7-list", {
             xPercent: -totalWidth,
-            duration: 120,
+            duration: 300,
             ease: "none",
             repeat: -1,
         });
@@ -190,5 +190,22 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    const listItems = document.querySelectorAll(".s5-list li");
+    const allImages = document.querySelectorAll(".s5-list .list-img img");
+
+    listItems.forEach((li) => {
+        li.addEventListener("mouseenter", () => {
+            allImages.forEach((img) => {
+                img.style.height = "100%";
+            });
+        });
+
+        li.addEventListener("mouseleave", () => {
+            allImages.forEach((img) => {
+                img.style.height = "auto";
+            });
+        });
+    });
 
 }); // DOMContentLoaded end

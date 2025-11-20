@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (cursor) cursor.style.display = "none";
                             lenis.start();
                             resolve();
-                        }, 1000);
+                        }, 5000);
                     }
-                }, 5000).go();
+                },).go();
             });
         }
 

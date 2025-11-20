@@ -83,6 +83,7 @@
     display: flex;
     flex-direction: column;
     gap: 300px;
+    width: 100%;
 }
 .s2 .s2-inner .s2-cont .s2-title{
     display: flex;
@@ -394,12 +395,12 @@
     flex: 1 1 auto;
     flex-direction: column;
     position: relative;
-    transition: width cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
     width: calc((1520px - 40px) / 3);
     outline: none;
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
     width: calc(((1520px - 40px) / 3) * 1.8);
+    transition: width cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont a{
     display: flex;
@@ -417,11 +418,10 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
     position: absolute;
     bottom: 0;
-    top: 0;
     object-fit: cover;
     aspect-ratio: 1/1;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt{
     display: flex;
@@ -535,9 +535,6 @@
         font-size: 4rem;
     }
 
-    .s5{
-        height: 100vh;
-    }
     .s5 .s5-inner .s5-cont .s5-title h2{
         font-size: 5rem;
     }
@@ -560,8 +557,6 @@
 }
 @media (max-width:1024px){
     .s5 {
-        scroll-snap-align: unset;
-        scroll-snap-stop: unset;
         height: 250vh;
     }
     .s5 .s5-inner .s5-cont .s5-list{
@@ -572,6 +567,9 @@
     }
     .s5 .s5-inner .s5-cont .s5-list li:hover{
         width: 100%;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
+        aspect-ratio: unset;
     }
 }
 
@@ -654,6 +652,9 @@
     .s5 .s5-inner .s5-cont .s5-list li:hover{
         width: 100%;
     }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont a{
+        gap: 10px;
+    }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
         padding-top: 0;
     }
@@ -661,7 +662,6 @@
         position: unset;
         height: unset;
         aspect-ratio: 9/6;
-        margin-bottom: 10px;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
         aspect-ratio: 9/6 !important;
@@ -673,6 +673,7 @@
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
         position: unset;
+        aspect-ratio: unset;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-txt,
     .s5 .s5-inner .s5-cont .s5-list{
@@ -769,9 +770,6 @@
     }
     .s5 .s5-inner .s5-cont .s5-title p{
         font-size: 1.4rem;
-    }
-    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
-        margin-bottom: 8px;
     }
     .s5 .s5-inner .s5-cont .s5-list li{
         width: 100%;
