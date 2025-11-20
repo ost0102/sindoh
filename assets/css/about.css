@@ -395,11 +395,11 @@
     flex: 1 1 auto;
     flex-direction: column;
     position: relative;
-    width: calc((1520px - 40px) / 3);
+    width: calc((100vw - 40px) / 3);
     outline: none;
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
-    width: calc(((1520px - 40px) / 3) * 1.8);
+    width: calc(((100vw - 25vw) / 3) * 1.8);
     transition: width cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont a{
@@ -410,7 +410,7 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
     transition: none;
     overflow: hidden;
-    padding-top: calc(((1520px - 40px) / 3) * 1);
+    padding-top: calc(((100vw - 25vw) / 3) * 1);
     position: relative;
     width: 100%;
 }
@@ -567,6 +567,9 @@
     }
     .s5 .s5-inner .s5-cont .s5-list li:hover{
         width: 100%;
+    }
+    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
+        padding-top: calc(((1520px - 40px) / 3) * 1);
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img img{
         aspect-ratio: unset;

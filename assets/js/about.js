@@ -165,20 +165,54 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    const listItems = document.querySelectorAll(".s5-list li");
-    const allImages = document.querySelectorAll(".s5-list .list-img img");
+    let hoverEnabled = false;
 
-    listItems.forEach((li) => {
-        li.addEventListener("mouseenter", () => {
-            allImages.forEach((img) => {
-                img.style.height = "100%";
+    function addHoverEvents() {
+        if (hoverEnabled) return; // 다시 등록되지 않게 방지
+
+        const listItems = document.querySelectorAll(".s5-list li");
+        const allImages = document.querySelectorAll(".s5-list .list-img img");
+
+        listItems.forEach((li) => {
+            li.addEventListener("mouseenter", li._enter = () => {
+                allImages.forEach((img) => (img.style.height = "100%"));
+            });
+
+            li.addEventListener("mouseleave", li._leave = () => {
+                allImages.forEach((img) => (img.style.height = "auto"));
             });
         });
 
-        li.addEventListener("mouseleave", () => {
-            allImages.forEach((img) => {
-                img.style.height = "auto";
-            });
+        hoverEnabled = true;
+    }
+
+    function removeHoverEvents() {
+        if (!hoverEnabled) return; // 이미 제거된 상태면 패스
+
+        const listItems = document.querySelectorAll(".s5-list li");
+        const allImages = document.querySelectorAll(".s5-list .list-img img");
+
+        listItems.forEach((li) => {
+            li.removeEventListener("mouseenter", li._enter);
+            li.removeEventListener("mouseleave", li._leave);
+            delete li._enter;
+            delete li._leave;
         });
-    });
+
+        // hover 해제 시 스타일 원복
+        allImages.forEach((img) => (img.style.height = "auto"));
+
+        hoverEnabled = false;
+    }
+
+    function checkWidth() {
+        if (window.innerWidth >= 1025) {
+            addHoverEvents();
+        } else {
+            removeHoverEvents();
+        }
+    }
+
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
 });
