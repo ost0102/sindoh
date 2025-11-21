@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (hoverEnabled) return; // 다시 등록되지 않게 방지
 
         const listItems = document.querySelectorAll(".s5-list li");
-        const allImages = document.querySelectorAll(".s5-list .list-img img");
+        const allImages = document.querySelectorAll(".s5-list .list-img .alignment");
 
         listItems.forEach((li) => {
             li.addEventListener("mouseenter", li._enter = () => {
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!hoverEnabled) return; // 이미 제거된 상태면 패스
 
         const listItems = document.querySelectorAll(".s5-list li");
-        const allImages = document.querySelectorAll(".s5-list .list-img img");
+        const allImages = document.querySelectorAll(".s5-list .list-img .alignment");
 
         listItems.forEach((li) => {
             li.removeEventListener("mouseenter", li._enter);
