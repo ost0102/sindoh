@@ -128,47 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const s7List = document.querySelector(".s7-list");
 
     if (s7List) {
-        const imageCount = 24;
-        const loopCount = 10;
-        const fragment = document.createDocumentFragment();
-
-        const createItem = (index) => {
-            const li = document.createElement("li");
-            const imgWrap = document.createElement("div");
-            imgWrap.className = "list-img";
-
-            const offImg = document.createElement("img");
-            offImg.src = `../images/solution-intro/s7_img${index}-off.png`;
-            offImg.alt = `솔루션 이미지 ${index} 기본`;
-            offImg.className = "off";
-
-            const onImg = document.createElement("img");
-            onImg.src = `../images/solution-intro/s7_img${index}-on.png`;
-            onImg.alt = `솔루션 이미지 ${index} 활성`;
-            onImg.className = "on";
-
-            imgWrap.appendChild(offImg);
-            imgWrap.appendChild(onImg);
-            li.appendChild(imgWrap);
-
-            return li;
-        };
-
-        s7List.innerHTML = "";
-
-        for (let loop = 0; loop < loopCount; loop++) {
-            for (let i = 1; i <= imageCount; i++) {
-                fragment.appendChild(createItem(i));
-            }
-        }
-
-        s7List.appendChild(fragment);
-
         const totalWidth = s7List.scrollWidth;
 
         const slideTl = gsap.to(".s7-list", {
             xPercent: -totalWidth,
-            duration: 300,
+            duration: 10000,
             ease: "none",
             repeat: -1,
         });
