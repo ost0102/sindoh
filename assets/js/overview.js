@@ -266,4 +266,39 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // .year-list--cont의 높이를 구하는 함수
+    function getYearListHeight(sectionSelector) {
+        const yearListCont = document.querySelector(`${sectionSelector} .year-list--cont`);
+        if (!yearListCont) {
+            console.warn(`${sectionSelector} .year-list--cont를 찾을 수 없습니다.`);
+            return null;
+        }
+        
+        // 여러 방법으로 높이 계산
+        const height = {
+            offsetHeight: yearListCont.offsetHeight,      // 패딩/보더 포함 실제 높이
+            scrollHeight: yearListCont.scrollHeight,      // 스크롤 가능한 전체 높이
+            clientHeight: yearListCont.clientHeight,      // 패딩 포함, 보더/스크롤바 제외
+            getBoundingClientRect: yearListCont.getBoundingClientRect().height  // 실제 렌더링 높이
+        };
+        
+        return height;
+    }
+    
+    // 모든 섹션의 .year-list--cont 높이 출력
+    const yearSections = ['.s3', '.s5', '.s7', '.s9'];
+    yearSections.forEach(section => {
+        const height = getYearListHeight(section);
+        if (height) {
+            console.log(`${section} .year-list--cont 높이:`, height);
+        }
+    });
+    
+    // 특정 섹션의 높이만 구하기 (예: .s5)
+    // const s5Height = getYearListHeight('.s5');
+    // if (s5Height) {
+    //     console.log('s5 높이:', s5Height);
+    // }
+
+    
 }); // ← DOMContentLoaded 끝
