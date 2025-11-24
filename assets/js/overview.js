@@ -266,39 +266,62 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // .year-list--cont의 높이를 구하는 함수
-    function getYearListHeight(sectionSelector) {
-        const yearListCont = document.querySelector(`${sectionSelector} .year-list--cont`);
-        if (!yearListCont) {
-            console.warn(`${sectionSelector} .year-list--cont를 찾을 수 없습니다.`);
-            return null;
-        }
+    // .year-list--cont의 높이에 따라 .left 높이를 설정하는 함수
+    // function setLeftHeightByYearList(sectionSelector) {
+    //     const yearListCont = document.querySelector(`${sectionSelector} .year-list--cont`);
+    //     const leftElement = document.querySelector(`${sectionSelector} .left`);
         
-        // 여러 방법으로 높이 계산
-        const height = {
-            offsetHeight: yearListCont.offsetHeight,      // 패딩/보더 포함 실제 높이
-            scrollHeight: yearListCont.scrollHeight,      // 스크롤 가능한 전체 높이
-            clientHeight: yearListCont.clientHeight,      // 패딩 포함, 보더/스크롤바 제외
-            getBoundingClientRect: yearListCont.getBoundingClientRect().height  // 실제 렌더링 높이
-        };
+    //     if (!yearListCont || !leftElement) {
+    //         return;
+    //     }
         
-        return height;
-    }
-    
-    // 모든 섹션의 .year-list--cont 높이 출력
-    const yearSections = ['.s3', '.s5', '.s7', '.s9'];
-    yearSections.forEach(section => {
-        const height = getYearListHeight(section);
-        if (height) {
-            console.log(`${section} .year-list--cont 높이:`, height);
-        }
-    });
-    
-    // 특정 섹션의 높이만 구하기 (예: .s5)
-    // const s5Height = getYearListHeight('.s5');
-    // if (s5Height) {
-    //     console.log('s5 높이:', s5Height);
+    //     // .year-list--cont의 실제 높이 계산 (scrollHeight 사용)
+    //     const yearListHeight = yearListCont.scrollHeight;
+    //     let leftHeightVh;
+        
+    //     // 높이에 따른 조건부 설정 (큰 값부터 작은 값 순으로 정렬)
+    //     if (yearListHeight === 640) {
+    //         leftHeightVh = 140;
+    //     } else if (yearListHeight >= 1285) {
+    //         leftHeightVh = 209;
+    //     } else if (yearListHeight >= 1156) {
+    //         leftHeightVh = 195;
+    //     } else if (yearListHeight >= 1027) {
+    //         leftHeightVh = 180;
+    //     } else if (yearListHeight >= 900) {
+    //         leftHeightVh = 165;
+    //     } else if (yearListHeight >= 769) {
+    //         leftHeightVh = 150;
+    //     } else if (yearListHeight >= 500) {
+    //         leftHeightVh = 125;
+    //     } else {
+    //         // 500px 미만일 때는 기본값 (필요시 수정)
+    //         leftHeightVh = 100;
+    //     }
+        
+    //     // .left의 높이 설정
+    //     leftElement.style.height = leftHeightVh + 'vh';
+        
     // }
+    
+    // // .s5, .s7, .s9 섹션에 적용
+    // const yearSections = ['.s5', '.s7', '.s9'];
+    
+    // // 초기 실행
+    // yearSections.forEach(section => {
+    //     setLeftHeightByYearList(section);
+    // });
+    
+    // // 리사이즈 시 재계산
+    // let resizeTimer;
+    // $(window).on('resize', function() {
+    //     clearTimeout(resizeTimer);
+    //     resizeTimer = setTimeout(function() {
+    //         yearSections.forEach(section => {
+    //             setLeftHeightByYearList(section);
+    //         });
+    //     }, 100);
+    // });
 
     
 }); // ← DOMContentLoaded 끝

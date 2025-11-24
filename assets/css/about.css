@@ -1,4 +1,9 @@
 
+:root {
+    --viewport-width: 1560px;
+    --l2024--width: var(--viewport-width);
+    --l2024--itemWidth: calc((var(--l2024--width) - 80px) / 3);
+}
 /* s1(첫 번째 섹션) */
 .s1{
     height: 400vh;
@@ -395,11 +400,11 @@
     flex: 1 1 auto;
     flex-direction: column;
     position: relative;
-    width: calc((1560px - 40px) / 3);
+    width: var(--l2024--itemWidth);
     outline: none;
 }
 .s5 .s5-inner .s5-cont .s5-list li:hover{
-    width: calc((1560px / 3) * 1.8);
+    width: calc( var(--l2024--itemWidth) * 2);
     transition: width cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont a{
@@ -410,17 +415,15 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
     transition: none;
     overflow: hidden;
-    padding-top: calc(((150vh - 100px) / 3) * 1);
+    padding-top: calc( var(--l2024--itemWidth) * 1);
     position: relative;
-    width: 100%;
 }
-
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img .alignment{
     bottom: 0;
+    top: 0;
     overflow: hidden;
     position: absolute;
     width: 100%;
-    aspect-ratio: 1/1;
 }
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img .alignment img{
     height: 100%;
@@ -569,7 +572,7 @@
 }
 @media (max-width:1024px){
     .s5 {
-        height: 250vh;
+        height: 260vh;
     }
     .s5 .s5-inner .s5-cont .s5-list{
         flex-direction: column;
@@ -674,13 +677,7 @@
         padding-top: 0;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
-        position: unset;
-        height: unset;
-        aspect-ratio: 9/6;
-    }
-    .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img{
         aspect-ratio: 9/6 !important;
-        height: unset !important;
     }
     .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img:hover{
         aspect-ratio: 9/6 !important;
