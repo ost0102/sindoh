@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     // .s5, .s7, .s9 섹션에 적용
-    const yearSections = ['.s5', '.s7', '.s9'];
+    const yearSections = ['.s3', '.s5', '.s7', '.s9'];
     
     // 초기 실행
     yearSections.forEach(section => {
