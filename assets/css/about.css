@@ -410,7 +410,7 @@
 .s5 .s5-inner .s5-cont .s5-list .list-cont .list-img {
     transition: none;
     overflow: hidden;
-    padding-top: calc(((1560px - 40px) / 3) * 1);
+    padding-top: calc(((1560px - 80px) / 3) * 1);
     position: relative;
     width: 100%;
 }
