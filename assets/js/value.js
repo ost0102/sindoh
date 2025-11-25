@@ -1,5 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    // Lenis 제어 유틸
+    function waitForLenis(callback) {
+        if (window.lenis) {
+            callback(window.lenis);
+        } else {
+            setTimeout(() => waitForLenis(callback), 50);
+        }
+    }
+
+    let hasStartedLenis = false;
+    waitForLenis((lenis) => {
+        lenis.stop();
+        console.log("Lenis 스크롤이 일시 정지되었습니다.");
+    });
+
+    function startLenisAfterVideo() {
+        if (hasStartedLenis) return;
+        waitForLenis((lenis) => {
+            lenis.start();
+            hasStartedLenis = true;
+            console.log("Lenis 스크롤이 시작되었습니다.");
+        });
+    }
+
     // GSAP 플러그인 로드
     gsap.registerPlugin(ScrollTrigger);
 
@@ -33,15 +57,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 비디오 설정
     const video = document.getElementById("video");
+    let videoLoaded = false;
+
+    function handleVideoLoaded() {
+        if (videoLoaded) return;
+        videoLoaded = true;
+        console.log("비디오 로드 완료: video");
+        startLenisAfterVideo();
+    }
+
+    function attachVideoLoadListeners(targetVideo) {
+        if (!targetVideo) return;
+        ["loadeddata", "canplay", "canplaythrough"].forEach((eventName) => {
+            targetVideo.addEventListener(eventName, handleVideoLoaded);
+        });
+        if (targetVideo.readyState >= 2) {
+            handleVideoLoaded();
+        }
+    }
+
+    if (video) {
+        attachVideoLoadListeners(video);
+    } else {
+        console.warn("video 요소를 찾을 수 없습니다.");
+        // 비디오가 없다면 바로 Lenis 시작
+        handleVideoLoaded();
+    }
 
     if (window.innerWidth >= 1025) {
         // 비디오 메타데이터 로드 후 애니메이션 설정
-        video.addEventListener("loadedmetadata", () => {
+        video?.addEventListener("loadedmetadata", () => {
             setupVideoAnimation(video);
         });
     } else {
         // 1025px 이하일 때는 바로 비디오 재생
-        video.play();
+        video?.play();
     }
 
     // 버튼 애니메이션
