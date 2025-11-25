@@ -202,10 +202,13 @@
 /* 연혁 css */
 .year-wrap{
     display: flex;
-    align-items: start;
+    align-items: center;
 }
 .year-wrap .left{
+    position: sticky;
+    top: calc(50vh - 140px);
     flex: 1;
+    height: fit-content;
 }
 .year-wrap .left .left-inner{
     display: flex;
@@ -230,7 +233,7 @@
     display: flex;
     align-items: center;
     flex: 1;
-    transform: translateY(calc((100vh - 283px) / 2));
+    padding-top: 50vh;
 }
 .year-wrap .right .year-list--cont{
     width: 100%;
