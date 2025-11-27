@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const slideTl = gsap.to(".s7-list", {
             xPercent: -totalWidth,
-            duration: 10000,
+            duration: 5000,
             ease: "none",
             repeat: -1,
         });
@@ -155,11 +155,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function updateViewportWidth() {
-        const vw = Math.min(window.innerWidth, 1560);  // 최대 1560px 제한
-        document.documentElement.style.setProperty('--viewport-width', vw + 'px');
-    }
     
-    updateViewportWidth();               // 최초 실행
-    window.addEventListener('resize', updateViewportWidth);  // 리사이즈 시 업데이트
 }); // DOMContentLoaded end

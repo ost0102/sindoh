@@ -395,18 +395,26 @@
     overflow: hidden;
     background: #000;
 }
-.s7 .s7-inner{}
+.s7 .s7-inner{
+    padding: 55px 0;
+}
 .s7 .s7-inner .s7-list{
     display: flex;
     align-items: center;
-    padding: 55px 0;
+    height: 20px;
 }
 .s7 .s7-inner .s7-list li{
     flex: 0 0 auto;
     margin-right: 40px;
+    height: 100%;
 }
 .s7 .s7-inner .s7-list li .list-img{
     position: relative;
+    height: 100%;
+}
+.s7 .s7-inner .s7-list li .list-img img{
+    object-fit: cover;
+    height: 100%;
 }
 .s7 .s7-inner .s7-list li .list-img img.off{}
 .s7 .s7-inner .s7-list li .list-img img.on{

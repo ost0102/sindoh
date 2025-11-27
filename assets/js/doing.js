@@ -90,14 +90,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function initSection4Desktop() {
         const numod = new Odometer({ el: document.querySelector('.s4 .num p') });
+        //숫자 롤링 변수
 
         gsap.fromTo(".mobile-img", { left: "-50%" }, {
             left: "15vw",
-            scrollTrigger: { trigger: ".s4", start: "top top", end: "20% bottom", scrub: true }
+            scrollTrigger: { 
+                trigger: ".s4", 
+                start: "top top", 
+                end: "20% bottom", 
+                scrub: true 
+            }
         });
 
+        // 숫자 롤링 인터랙션 트리거
         const tl = gsap.timeline({
-            scrollTrigger: { trigger: ".s4", start: "21% top", end: "90% bottom", scrub: true }
+            scrollTrigger: { 
+                trigger: ".s4", 
+                start: "21% top", 
+                end: "90% bottom", 
+                scrub: true 
+            }
         });
 
         tl
@@ -128,10 +140,22 @@ document.addEventListener("DOMContentLoaded", function() {
         gsap.set(".mobile_behind", { top: "240px" });
 
         gsap.fromTo(".mobile-img", { top: "150%" }, { top: "50vw",
-            scrollTrigger: { trigger: ".s4", start: "top top", end: "20% bottom", scrub: true }
+            scrollTrigger: { 
+                trigger: ".s4", 
+                start: "top top", 
+                end: "20% bottom", 
+                scrub: true 
+            }
         });
 
-        const tl = gsap.timeline({ scrollTrigger: { trigger: ".s4", start: "21% top", end: "85% bottom", scrub: true } });
+        // 숫자 롤링 인터랙션 트리거
+        const tl = gsap.timeline({ scrollTrigger: { 
+            trigger: ".s4", 
+            start: "21% top", 
+            end: "85% bottom", 
+            scrub: true 
+            } 
+        });
 
         tl
             .to(".intro", { opacity: 0 })
@@ -157,10 +181,22 @@ document.addEventListener("DOMContentLoaded", function() {
         gsap.set(".mobile_behind", { top: "240px" });
 
         gsap.fromTo(".mobile-img", { top: "150%" }, { top: "440px",
-            scrollTrigger: { trigger: ".s4", start: "top top", end: "20% bottom", scrub: true }
+            scrollTrigger: { 
+                trigger: ".s4", 
+                start: "top top", 
+                end: "20% bottom", 
+                scrub: true 
+            }
         });
 
-        const tl = gsap.timeline({ scrollTrigger: { trigger: ".s4", start: "21% top", end: "85% bottom", scrub: true } });
+        // 숫자 롤링 인터랙션 트리거
+        const tl = gsap.timeline({ scrollTrigger: { 
+            trigger: ".s4", 
+            start: "21% top", 
+            end: "85% bottom", 
+            scrub: true 
+            } 
+        });
 
         tl
             .to(".intro", { opacity: 0 })
@@ -186,10 +222,21 @@ document.addEventListener("DOMContentLoaded", function() {
         gsap.set(".mobile_behind", { top: "240px" });
 
         gsap.fromTo(".mobile-img", { top: "150%" }, { top: "430px",
-            scrollTrigger: { trigger: ".s4", start: "top top", end: "20% bottom", scrub: true }
+            scrollTrigger: { 
+                trigger: ".s4", 
+                start: "top top", 
+                end: "20% bottom", 
+                scrub: true 
+            }
         });
 
-        const tl = gsap.timeline({ scrollTrigger: { trigger: ".s4", start: "21% top", end: "85% bottom", scrub: true } });
+        const tl = gsap.timeline({ scrollTrigger: { 
+            trigger: ".s4", 
+            start: "21% top", 
+            end: "85% bottom", 
+            scrub: true 
+            } 
+        });
 
         tl
             .to(".intro", { opacity: 0 })
