@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.lenis = new Lenis({
       duration: 1.2,
       smooth: true,
+      smoothTouch: true,
+      infinite: false,
   });
 
   function raf(time) {

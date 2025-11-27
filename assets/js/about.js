@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             start: "5% top",
             end: "bottom bottom",
             scrub: true,
+            toggleActions: "play none none reverse",
         }
     });
 
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             start: "top top",
             end: "40% 30%",
             scrub: true,
+            toggleActions: "play none none reverse",
         },
     });
 
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 start: "80% 70%",   
                 end: "bottom top",     
                 scrub: true,
+                toggleActions: "play none none reverse",
             },
         }
     );
@@ -61,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         start: "100% top",
         end: "750% top",
         scrub: true,
+        toggleActions: "play none none reverse",
         onUpdate: function (self) {
             var $el = $('.rolling-txt');
             if (!$el.length) return;
