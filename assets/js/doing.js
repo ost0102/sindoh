@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "60% 80%",
+            start: "80% 80%",
             end: "bottom top",
             onEnter: () => {
                 if (!autoSlideInProgress) restartAutoSlide();
