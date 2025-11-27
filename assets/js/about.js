@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ScrollTrigger.create({
             trigger: ".s4",
             start: "40% 80%",
+            end: "bottom top",
             onEnter: restartAutoSlide,
             onLeave: () => {
                 if (autoSlideTween) {
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ScrollTrigger.create({
             trigger: ".s4",
             start: "40% 80%",
+            end: "bottom top",
             onEnter: restartAutoSlide,
             onLeave: () => {
                 if (autoSlideTween) {
