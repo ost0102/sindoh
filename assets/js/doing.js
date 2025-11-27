@@ -287,9 +287,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let s5Bounds = getS5Bounds();
     let autoSlideTween = null;
     const autoSpeedPxPerSec = 80;
+    let autoSlideInProgress = false; // 슬라이드 진행 상태를 추적하는 플래그
 
     function restartAutoSlide() {
-        if (!list || !s5Bounds.needsSlide) return;
+        if (!list || !s5Bounds.needsSlide || autoSlideInProgress) return;
 
         if (autoSlideTween) autoSlideTween.kill();
 
@@ -299,11 +300,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (distance <= 0.01) return;
 
+        autoSlideInProgress = true; // 슬라이드 진행 시작
+
         autoSlideTween = gsap.to(list, {
             x: s5Bounds.minX,
             duration: duration,
             ease: "none",
-            onComplete: () => autoSlideTween = null
+            onComplete: () => {
+                autoSlideTween = null;
+                autoSlideInProgress = false; // 슬라이드 진행 완료
+            }
         });
     }
 
@@ -332,27 +338,44 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("resize", function() {
         s5Bounds = getS5Bounds();
         if (s5Drag) s5Drag.applyBounds(s5Bounds);
-        restartAutoSlide();
+        restartAutoSlide(); // 리사이즈 시 자동 슬라이드 재시작
     });
 
-    if(window.innerWidth > 768){
+    if (window.innerWidth > 768) {
         ScrollTrigger.create({
             trigger: ".s5",
             start: "40% 80%",
             end: "bottom top",
-            onEnter: restartAutoSlide,
-            onLeave: () => autoSlideTween?.kill(),
-            onEnterBack: restartAutoSlide
+            onEnter: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
+            },
+            onLeave: () => {
+                if (autoSlideTween) {
+                    autoSlideTween.kill();
+                    autoSlideInProgress = false; // 슬라이드 종료 시 상태 초기화
+                }
+            },
+            onEnterBack: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
+            }
         });
-    }else{
+    } else {
         ScrollTrigger.create({
             trigger: ".s5",
             start: "60% 80%",
             end: "bottom top",
-            markers: true,
-            onEnter: restartAutoSlide,
-            onLeave: () => autoSlideTween?.kill(),
-            onEnterBack: restartAutoSlide
+            onEnter: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
+            },
+            onLeave: () => {
+                if (autoSlideTween) {
+                    autoSlideTween.kill();
+                    autoSlideInProgress = false;
+                }
+            },
+            onEnterBack: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
+            }
         });
     }
 });
