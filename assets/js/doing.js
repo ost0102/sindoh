@@ -347,8 +347,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "40% 80%",
+            start: "60% 80%",
             end: "bottom top",
+            markers: true,
             onEnter: restartAutoSlide,
             onLeave: () => autoSlideTween?.kill(),
             onEnterBack: restartAutoSlide
