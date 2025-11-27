@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             start: "5% top",
             end: "bottom bottom",
             scrub: 1,
+            toggleActions: "play none none reverse",
             anticipatePin: 1
         }
     });
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             start: "top top",
             end: "30% 10%",
             scrub: true,
+            toggleActions: "play none none reverse",
         },
     });
 
@@ -46,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             start: "bottom top",
             end: "200% top",
             scrub: true,
+            toggleActions: "play none none reverse",
         }
     });
 
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
             start: "40% top",
             end: "90% bottom",
             scrub: true,
+            toggleActions: "play none none reverse",
         }
     });
 
@@ -98,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 trigger: ".s4", 
                 start: "top top", 
                 end: "20% bottom", 
+                toggleActions: "play none none reverse",
                 scrub: true 
             }
         });
@@ -108,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 trigger: ".s4", 
                 start: "21% top", 
                 end: "90% bottom", 
+                toggleActions: "play none none reverse",
                 scrub: true 
             }
         });
@@ -144,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 trigger: ".s4", 
                 start: "top top", 
                 end: "20% bottom", 
+                toggleActions: "play none none reverse",
                 scrub: true 
             }
         });
@@ -153,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function() {
             trigger: ".s4", 
             start: "21% top", 
             end: "85% bottom", 
+            toggleActions: "play none none reverse",
             scrub: true 
             } 
         });
@@ -184,7 +192,8 @@ document.addEventListener("DOMContentLoaded", function() {
             scrollTrigger: { 
                 trigger: ".s4", 
                 start: "top top", 
-                end: "20% bottom", 
+                end: "20% bottom",
+                toggleActions: "play none none reverse", 
                 scrub: true 
             }
         });
@@ -194,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
             trigger: ".s4", 
             start: "21% top", 
             end: "85% bottom", 
+            toggleActions: "play none none reverse",
             scrub: true 
             } 
         });
@@ -226,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 trigger: ".s4", 
                 start: "top top", 
                 end: "20% bottom", 
+                toggleActions: "play none none reverse",
                 scrub: true 
             }
         });
@@ -234,6 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
             trigger: ".s4", 
             start: "21% top", 
             end: "85% bottom", 
+            toggleActions: "play none none reverse",
             scrub: true 
             } 
         });
@@ -323,12 +335,23 @@ document.addEventListener("DOMContentLoaded", function() {
         restartAutoSlide();
     });
 
-    ScrollTrigger.create({
-        trigger: ".s5",
-        start: "top 450px",
-        onEnter: restartAutoSlide,
-        onLeave: () => autoSlideTween?.kill(),
-        onEnterBack: restartAutoSlide
-    });
-
+    if(window.innerWidth > 768){
+        ScrollTrigger.create({
+            trigger: ".s5",
+            start: "40% 80%",
+            end: "bottom top",
+            onEnter: restartAutoSlide,
+            onLeave: () => autoSlideTween?.kill(),
+            onEnterBack: restartAutoSlide
+        });
+    }else{
+        ScrollTrigger.create({
+            trigger: ".s5",
+            start: "40% 80%",
+            end: "bottom top",
+            onEnter: restartAutoSlide,
+            onLeave: () => autoSlideTween?.kill(),
+            onEnterBack: restartAutoSlide
+        });
+    }
 });
