@@ -150,19 +150,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (s4Drag) s4Drag.applyBounds(s4Bounds);
         restartAutoSlide();
     });
-
-    ScrollTrigger.create({
-        trigger: ".s4",
-        start: "40% 80%",
-        onEnter: restartAutoSlide,
-        onLeave: () => {
-            if (autoSlideTween) {
-                autoSlideTween.kill();
-                autoSlideTween = null;
-            }
-        },
-        onEnterBack: restartAutoSlide
-    });
+    if(window.innerWidth > 768){
+        ScrollTrigger.create({
+            trigger: ".s4",
+            start: "40% 80%",
+            onEnter: restartAutoSlide,
+            onLeave: () => {
+                if (autoSlideTween) {
+                    autoSlideTween.kill();
+                    autoSlideTween = null;
+                }
+            },
+            onEnterBack: restartAutoSlide
+        });
+    } else{
+        ScrollTrigger.create({
+            trigger: ".s4",
+            start: "40% 80%",
+            onEnter: restartAutoSlide,
+            onLeave: () => {
+                if (autoSlideTween) {
+                    autoSlideTween.kill();
+                    autoSlideTween = null;
+                }
+            },
+            onEnterBack: restartAutoSlide
+        });
+    }
     
     function updateViewportWidth() {
         const vw = Math.min(window.innerWidth, 1560);  // 최대 1560px 제한
