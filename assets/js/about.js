@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })[0];
 
     window.addEventListener("resize", () => {
+        ScrollTrigger.refresh();
         s4Bounds = getS4Bounds();
         if (s4Drag) s4Drag.applyBounds(s4Bounds);
         restartAutoSlide();

@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
       smooth: true,
       smoothTouch: true,
       infinite: false,
+      inertia: 0.6
   });
 
   function raf(time) {
