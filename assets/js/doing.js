@@ -290,6 +290,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let autoSlideInProgress = false; // 슬라이드 진행 상태를 추적하는 플래그
 
     function restartAutoSlide() {
+        // 슬라이드가 진행 중일 때는 다시 실행하지 않음
         if (!list || !s5Bounds.needsSlide || autoSlideInProgress) return;
 
         if (autoSlideTween) autoSlideTween.kill();
@@ -341,13 +342,14 @@ document.addEventListener("DOMContentLoaded", function() {
         restartAutoSlide(); // 리사이즈 시 자동 슬라이드 재시작
     });
 
+    // 모바일과 데스크탑에서 다르게 처리
     if (window.innerWidth > 768) {
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "40% 80%",
+            start: "40% 80%",  // start 진입 시점
             end: "bottom top",
             onEnter: () => {
-                if (!autoSlideInProgress) restartAutoSlide();
+                if (!autoSlideInProgress) restartAutoSlide();  // 스크롤 진입 후 슬라이드 시작
             },
             onLeave: () => {
                 if (autoSlideTween) {
@@ -362,15 +364,15 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "80% 80%",
+            start: "80% 80%",  // start 진입 시점
             end: "bottom top",
             onEnter: () => {
-                if (!autoSlideInProgress) restartAutoSlide();
+                if (!autoSlideInProgress) restartAutoSlide();  // 스크롤 진입 후 슬라이드 시작
             },
             onLeave: () => {
                 if (autoSlideTween) {
                     autoSlideTween.kill();
-                    autoSlideInProgress = false;
+                    autoSlideInProgress = false; // 슬라이드 종료 시 상태 초기화
                 }
             },
             onEnterBack: () => {
