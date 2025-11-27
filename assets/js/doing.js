@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "80% 80%",  // start 진입 시점
+            start: "100% 80%",  // start 진입 시점
             end: "bottom top",
             onEnter: () => {
                 if (!autoSlideInProgress) restartAutoSlide();  // 스크롤 진입 후 슬라이드 시작
