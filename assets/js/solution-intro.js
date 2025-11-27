@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 start: `top-=${offset} top`,
                 end: "top top",
                 scrub: true,
+                toggleActions: "play none none reverse",
             }
         }
     );
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "10% top",
             end: "90% bottom",
             scrub: true,
+            toggleActions: "play none none reverse",
         }
     });
 
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "top top",
             end: "30% 10%",
             scrub: true,
+            toggleActions: "play none none reverse",
         },
     });
 
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "30% top",
             end: "bottom bottom",
             scrub: true,
+            toggleActions: "play none none reverse",
             onUpdate: function (self) {
                 const p = self.progress;
                 const len = s4Items.length;
@@ -117,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 trigger: ".s4-clippath",
                 start: "80% 80%",
                 end: "bottom top",
+                toggleActions: "play none none reverse",
                 scrub: true,
             },
         }
