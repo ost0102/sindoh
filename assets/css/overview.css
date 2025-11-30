@@ -1,4 +1,6 @@
-
+body{
+    overflow-x: hidden;
+}
 /* s1(첫 번째 섹션) */
 .s1{
     position: relative;
@@ -657,9 +659,11 @@
         flex-direction: column;
         gap: 150px;
         padding: 50px 0;
+        align-items: flex-start;
     }
     .year-wrap .left{
         height: unset !important;
+        position: unset;
     }
     .year-wrap .left .left-inner{
         position: unset !important;
@@ -668,6 +672,7 @@
     .year-wrap .right{
         transform: unset !important;
         width: 100%;
+        padding-top: 0;
     }
     .year-wrap .left .left-inner .left-txt{
         gap: 40px;

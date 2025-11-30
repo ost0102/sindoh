@@ -90,106 +90,123 @@ document.addEventListener("DOMContentLoaded", function () {
     const list = document.querySelector(".s4-list");
     const listContainer = document.querySelector(".s4-cont");
 
-    function getS4Bounds() {
-        if (!list || !listContainer) return { minX: 0, maxX: 0 };
+    function getS5Bounds() {
+        if (!list || !listContainer) return { minX: 0, maxX: 0, needsSlide: false };
         const containerWidth = listContainer.clientWidth;
         const contentWidth = list.scrollWidth;
-        const minX = Math.min(containerWidth - contentWidth, 0);
-        return { minX, maxX: 0 };
+        return {
+            minX: Math.min(containerWidth - contentWidth, 0),
+            maxX: 0,
+            needsSlide: contentWidth > containerWidth
+        };
     }
 
-    let s4Bounds = getS4Bounds();
+    let s5Bounds = getS5Bounds();
     let autoSlideTween = null;
+    let autoSlideInProgress = false;
     const autoSpeedPxPerSec = 80;
 
+    // ------------------------------------
+    // 자동 슬라이드 함수 (1024px 이상에서만 작동)
+    // ------------------------------------
     function restartAutoSlide() {
-        if (!list) return;
+        if (window.innerWidth <= 1024) return; // 모바일/태블릿에서는 자동 슬라이드 금지
+        if (!list || !s5Bounds.needsSlide || autoSlideInProgress) return;
+
         if (autoSlideTween) autoSlideTween.kill();
 
         const currentX = gsap.getProperty(list, "x");
-        const distance = Math.max(0.01, (currentX - s4Bounds.minX));
+        const distance = Math.max(0.01, currentX - s5Bounds.minX);
         const duration = distance / autoSpeedPxPerSec;
 
+        if (distance <= 0.01) return;
+
+        autoSlideInProgress = true;
+
         autoSlideTween = gsap.to(list, {
-            x: s4Bounds.minX,
+            x: s5Bounds.minX,
             duration: duration,
             ease: "none",
-            onComplete: () => autoSlideTween = null,
+            onComplete: () => {
+                autoSlideTween = null;
+                autoSlideInProgress = false;
+            }
         });
     }
 
-    let s4Drag = Draggable.create(list, {
+    // ------------------------------------
+    // Draggable 생성 (모바일에서도 드래그는 허용)
+    // ------------------------------------
+    let s5Drag = Draggable.create(list, {
         type: "x",
         inertia: true,
-        bounds: s4Bounds,
+        bounds: s5Bounds,
         edgeResistance: 0.8,
         dragResistance: 0.2,
         cursor: "grab",
         activeCursor: "grabbing",
 
-        onDragStart() {
-            if (autoSlideTween) autoSlideTween.kill();
-        },
-        onDragEnd() {
-            s4Bounds = getS4Bounds();
-            this.applyBounds(s4Bounds);
+        // 드래그 시 자동 슬라이드 중지
+        onDragStart: () => autoSlideTween?.kill(),
 
-            const currentX = gsap.getProperty(list, "x");
-            if (currentX > s4Bounds.minX) restartAutoSlide();
-        },
-        onThrowUpdate() {
-            if (autoSlideTween) autoSlideTween.kill();
-        },
-        onThrowComplete() {
-            s4Bounds = getS4Bounds();
-            this.applyBounds(s4Bounds);
+        onDragEnd: function () {
+            s5Bounds = getS5Bounds();
+            this.applyBounds(s5Bounds);
 
-            const currentX = gsap.getProperty(list, "x");
-            if (currentX > s4Bounds.minX) restartAutoSlide();
+            if (window.innerWidth > 1024 && gsap.getProperty(list, "x") > s5Bounds.minX) {
+                restartAutoSlide();
+            }
+        },
+
+        onThrowUpdate: () => autoSlideTween?.kill(),
+
+        onThrowComplete: function () {
+            s5Bounds = getS5Bounds();
+            this.applyBounds(s5Bounds);
+
+            if (window.innerWidth > 1024 && gsap.getProperty(list, "x") > s5Bounds.minX) {
+                restartAutoSlide();
+            }
         }
     })[0];
 
-    window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
-        s4Bounds = getS4Bounds();
-        if (s4Drag) s4Drag.applyBounds(s4Bounds);
-        restartAutoSlide();
+    // ------------------------------------
+    // 리사이즈 시 처리
+    // ------------------------------------
+    window.addEventListener("resize", function () {
+        s5Bounds = getS5Bounds();
+        if (s5Drag) s5Drag.applyBounds(s5Bounds);
+
+        if (window.innerWidth > 1024) {
+            restartAutoSlide();
+        } else {
+            // 모바일에서는 자동 슬라이드 제거
+            autoSlideTween?.kill();
+            autoSlideInProgress = false;
+        }
     });
-    if(window.innerWidth > 768){
+
+    // ------------------------------------
+    // ScrollTrigger (1024px 이상에서만 자동 슬라이드 실행)
+    // ------------------------------------
+    if (window.innerWidth > 1024) {
         ScrollTrigger.create({
             trigger: ".s4",
             start: "40% 80%",
             end: "bottom top",
-            onEnter: restartAutoSlide,
-            onLeave: () => {
-                if (autoSlideTween) {
-                    autoSlideTween.kill();
-                    autoSlideTween = null;
-                }
+
+            onEnter: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
             },
-            onEnterBack: restartAutoSlide
-        });
-    } else{
-        ScrollTrigger.create({
-            trigger: ".s4",
-            start: "40% 80%",
-            end: "bottom top",
-            onEnter: restartAutoSlide,
+
             onLeave: () => {
-                if (autoSlideTween) {
-                    autoSlideTween.kill();
-                    autoSlideTween = null;
-                }
+                autoSlideTween?.kill();
+                autoSlideInProgress = false;
             },
-            onEnterBack: restartAutoSlide
+
+            onEnterBack: () => {
+                if (!autoSlideInProgress) restartAutoSlide();
+            }
         });
     }
-    
-    function updateViewportWidth() {
-        const vw = Math.min(window.innerWidth, 1560);  // 최대 1560px 제한
-        document.documentElement.style.setProperty('--viewport-width', vw + 'px');
-    }
-    
-    updateViewportWidth();               // 최초 실행
-    window.addEventListener('resize', updateViewportWidth);  // 리사이즈 시 업데이트
 });

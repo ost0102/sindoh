@@ -267,9 +267,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }});
     }
 
-    // -------------------------------
+    // ------------------------------------
     // section5 - 자동 슬라이드 + 드래그
-    // -------------------------------
+    // ------------------------------------
     const list = document.querySelector(".s5-list");
     const listContainer = document.querySelector(".s5-cont");
 
@@ -286,11 +286,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let s5Bounds = getS5Bounds();
     let autoSlideTween = null;
+    let autoSlideInProgress = false;
     const autoSpeedPxPerSec = 80;
-    let autoSlideInProgress = false; // 슬라이드 진행 상태를 추적하는 플래그
 
+    // ------------------------------------
+    // 자동 슬라이드 함수 (1024px 이상에서만 작동)
+    // ------------------------------------
     function restartAutoSlide() {
-        // 슬라이드가 진행 중일 때는 다시 실행하지 않음
+        if (window.innerWidth <= 1024) return; // 모바일/태블릿에서는 자동 슬라이드 금지
         if (!list || !s5Bounds.needsSlide || autoSlideInProgress) return;
 
         if (autoSlideTween) autoSlideTween.kill();
@@ -301,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (distance <= 0.01) return;
 
-        autoSlideInProgress = true; // 슬라이드 진행 시작
+        autoSlideInProgress = true;
 
         autoSlideTween = gsap.to(list, {
             x: s5Bounds.minX,
@@ -309,11 +312,14 @@ document.addEventListener("DOMContentLoaded", function() {
             ease: "none",
             onComplete: () => {
                 autoSlideTween = null;
-                autoSlideInProgress = false; // 슬라이드 진행 완료
+                autoSlideInProgress = false;
             }
         });
     }
 
+    // ------------------------------------
+    // Draggable 생성 (모바일에서도 드래그는 허용)
+    // ------------------------------------
     let s5Drag = Draggable.create(list, {
         type: "x",
         inertia: true,
@@ -322,62 +328,69 @@ document.addEventListener("DOMContentLoaded", function() {
         dragResistance: 0.2,
         cursor: "grab",
         activeCursor: "grabbing",
+
+        // 드래그 시 자동 슬라이드 중지
         onDragStart: () => autoSlideTween?.kill(),
-        onDragEnd: function() {
+
+        onDragEnd: function () {
             s5Bounds = getS5Bounds();
             this.applyBounds(s5Bounds);
-            if (gsap.getProperty(list, "x") > s5Bounds.minX) restartAutoSlide();
+
+            if (window.innerWidth > 1024 && gsap.getProperty(list, "x") > s5Bounds.minX) {
+                restartAutoSlide();
+            }
         },
+
         onThrowUpdate: () => autoSlideTween?.kill(),
-        onThrowComplete: function() {
+
+        onThrowComplete: function () {
             s5Bounds = getS5Bounds();
             this.applyBounds(s5Bounds);
-            if (gsap.getProperty(list, "x") > s5Bounds.minX) restartAutoSlide();
+
+            if (window.innerWidth > 1024 && gsap.getProperty(list, "x") > s5Bounds.minX) {
+                restartAutoSlide();
+            }
         }
     })[0];
 
-    window.addEventListener("resize", function() {
+    // ------------------------------------
+    // 리사이즈 시 처리
+    // ------------------------------------
+    window.addEventListener("resize", function () {
         s5Bounds = getS5Bounds();
         if (s5Drag) s5Drag.applyBounds(s5Bounds);
-        restartAutoSlide(); // 리사이즈 시 자동 슬라이드 재시작
+
+        if (window.innerWidth > 1024) {
+            restartAutoSlide();
+        } else {
+            // 모바일에서는 자동 슬라이드 제거
+            autoSlideTween?.kill();
+            autoSlideInProgress = false;
+        }
     });
 
-    // 모바일과 데스크탑에서 다르게 처리
-    if (window.innerWidth > 768) {
+    // ------------------------------------
+    // ScrollTrigger (1024px 이상에서만 자동 슬라이드 실행)
+    // ------------------------------------
+    if (window.innerWidth > 1024) {
         ScrollTrigger.create({
             trigger: ".s5",
-            start: "40% 80%",  // start 진입 시점
+            start: "40% 80%",
             end: "bottom top",
+
             onEnter: () => {
-                if (!autoSlideInProgress) restartAutoSlide();  // 스크롤 진입 후 슬라이드 시작
-            },
-            onLeave: () => {
-                if (autoSlideTween) {
-                    autoSlideTween.kill();
-                    autoSlideInProgress = false; // 슬라이드 종료 시 상태 초기화
-                }
-            },
-            onEnterBack: () => {
                 if (!autoSlideInProgress) restartAutoSlide();
-            }
-        });
-    } else {
-        ScrollTrigger.create({
-            trigger: ".s5",
-            start: "100% 80%",  // start 진입 시점
-            end: "bottom top",
-            onEnter: () => {
-                if (!autoSlideInProgress) restartAutoSlide();  // 스크롤 진입 후 슬라이드 시작
             },
+
             onLeave: () => {
-                if (autoSlideTween) {
-                    autoSlideTween.kill();
-                    autoSlideInProgress = false; // 슬라이드 종료 시 상태 초기화
-                }
+                autoSlideTween?.kill();
+                autoSlideInProgress = false;
             },
+
             onEnterBack: () => {
                 if (!autoSlideInProgress) restartAutoSlide();
             }
         });
     }
+
 });

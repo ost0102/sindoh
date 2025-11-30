@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     let hasStartedLenis = false;
-    waitForLenis((lenis) => {
-        lenis.stop();
-        console.log("Lenis 스크롤이 일시 정지되었습니다.");
-    });
+    // waitForLenis((lenis) => {
+    //     lenis.stop();
+    //     console.log("Lenis 스크롤이 일시 정지되었습니다.");
+    // });
 
     function startLenisAfterVideo() {
         if (hasStartedLenis) return;
