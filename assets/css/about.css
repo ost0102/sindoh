@@ -451,6 +451,8 @@
     font-family: '6semi';
     font-size: 1.25vw;
     white-space: nowrap;
+    height: 30px;
+    /* 두줄일결우 틀어짐 대비 */
 }
 
 

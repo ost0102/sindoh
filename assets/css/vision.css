@@ -15,7 +15,7 @@
 }
 .s1 .s1-inner .video-txt{
     position: absolute;
-    top: 100%;
+    top: 90%;
     left: 10%;
     transform: translateY(-50%);
 }
@@ -110,6 +110,9 @@
 }
 .s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .img-wrap{}
 .s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .img-wrap img{
+    transition: transform 0.8s 
+                cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s 
+                cubic-bezier(0.33, 1, 0.68, 1);
 }
 .s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap{
     display: flex;
@@ -130,10 +133,16 @@
 .s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt1 p{
     font-family: '7bold';
     font-size: 5.5rem;
+    transition: transform 0.8s 
+                cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s 
+                cubic-bezier(0.33, 1, 0.68, 1);
 }
 .s3 .s3-wrap .s3-inner .point-wrap .point-box .box-inner .txt-wrap .txt2 p{
     font-family: '4Regular';
     font-size: 2.4rem;
+    transition: transform 0.8s 
+                cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s 
+                cubic-bezier(0.33, 1, 0.68, 1);
 }
 .s3 .s3-wrap .s3-inner .video-wrap{
     position: absolute;

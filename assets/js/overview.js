@@ -173,7 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
             { top: "100%" },
             { top: "50%" }
         )
-        .to(".year-h2--title", { top: "-100%", ease: "none" })
+        // 년도 타이틀 올라오기
+        .to(".year-h2--title", { top: "-100%", ease: "none", duration: 3 })
         .fromTo(
             [
                 `.${sectionClass} .${sectionClass}-inner .${sectionClass}-cont .${sectionClass}-img--wrap .img-cont .img-inner p`,
